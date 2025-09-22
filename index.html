@@ -611,7 +611,7 @@
   </section>
 
   <!-- =====================================================
-      8) CONTACT
+      8) CONTACT — mailto robuste (sans backend)
   ====================================================== -->
   <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
     <div class="inner">
@@ -619,43 +619,83 @@
       <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
 
       <div class="split style1">
-        <!-- Formulaire mailto -->
+        <!-- Formulaire mailto (sans submit) -->
         <section aria-label="Formulaire de contact">
-          <form onsubmit="return sendMailto(event)">
+          <form id="contact-form" novalidate>
             <div class="fields">
               <div class="field half">
                 <label for="name">Nom</label>
-                <input type="text" id="name" autocomplete="name" />
+                <input type="text" id="name" autocomplete="name" required />
               </div>
               <div class="field half">
                 <label for="email">Email</label>
-                <input type="email" id="email" autocomplete="email" />
+                <input type="email" id="email" autocomplete="email" required />
               </div>
               <div class="field">
                 <label for="message">Message</label>
-                <textarea id="message" rows="5"></textarea>
+                <textarea id="message" rows="5" required></textarea>
               </div>
             </div>
             <ul class="actions">
-              <li><button type="submit" class="button primary">Envoyer</button></li>
+              <li>
+                <button type="button" class="button primary" id="send-btn">Envoyer</button>
+                <!-- Lien mailto “fantôme” déclenché par JS -->
+                <a id="mailto-link" href="#" class="sr-only" aria-hidden="true" tabindex="-1">.</a>
+              </li>
             </ul>
+            <noscript>
+              <p class="muted">
+                JavaScript est désactivé. Envoyez-moi un email :
+                <a href="mailto:rousseau.pro@outlook.fr?subject=Contact%20depuis%20xavrousseau.github.io">rousseau.pro@outlook.fr</a>.
+              </p>
+            </noscript>
           </form>
+
           <script>
-          function sendMailto(e){
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const from = document.getElementById('email').value.trim();
-            const msg  = document.getElementById('message').value.trim();
+            (function(){
+              const btn   = document.getElementById('send-btn');
+              const link  = document.getElementById('mailto-link');
+              const nameI = document.getElementById('name');
+              const mailI = document.getElementById('email');
+              const msgI  = document.getElementById('message');
 
-            const to = 'rousseau.pro@outlook.fr';
-            const subject = encodeURIComponent('Contact depuis xavrousseau.github.io');
-            const body = encodeURIComponent(
-              `Nom : ${name}\nEmail : ${from}\n\nMessage :\n${msg}\n`
-            );
+              function encodeLines(lines){
+                // Encode chaque ligne puis joindre avec %0D%0A (CRLF universel)
+                return lines.map(encodeURIComponent).join('%0D%0A');
+              }
 
-            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-            return false;
-          }
+              btn.addEventListener('click', function(){
+                const name = (nameI.value || '').trim();
+                const from = (mailI.value || '').trim();
+                const msg  = (msgI.value  || '').trim();
+
+                // Un minimum de validation “humaine”
+                if(!from){
+                  alert('Merci d’indiquer votre email.');
+                  mailI.focus();
+                  return;
+                }
+                if(!msg){
+                  alert('Merci d’écrire un message.');
+                  msgI.focus();
+                  return;
+                }
+
+                const to = 'rousseau.pro@outlook.fr';
+                const subject = encodeURIComponent('Contact depuis xavrousseau.github.io');
+                const body = encodeLines([
+                  `Nom : ${name}`,
+                  `Email : ${from}`,
+                  '',
+                  'Message :',
+                  msg
+                ]);
+
+                // Déclenchement via un vrai clic utilisateur sur un lien
+                link.setAttribute('href', `mailto:${to}?subject=${subject}&body=${body}`);
+                link.click();
+              });
+            })();
           </script>
         </section>
 
@@ -678,6 +718,7 @@
       </div>
     </div>
   </section>
+
 
 
   </main>
