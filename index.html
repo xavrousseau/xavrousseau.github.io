@@ -44,9 +44,9 @@
     "@type":"Person",
     "name":"Xavier Rousseau",
     "jobTitle":"Data Analyst / Data Science & Engineering",
-    "url":"https://xsorouz.github.io/",
-    "image":"https://xsorouz.github.io/images/portrait.png",
-    "sameAs":["https://www.linkedin.com/in/xavierrousseau","https://github.com/xsorouz"]
+    "url":"https://xavrousseau.github.io/",
+    "image":"https://xavrousseau.github.io/images/portrait.png",
+    "sameAs":["https://www.linkedin.com/in/xavierrousseau","https://github.com/xavrousseau"]
   }
   </script>
 </head>
@@ -67,7 +67,7 @@
           <li><a href="#skills">Compétences</a></li>
           <li><a href="#experience">Expériences</a></li>
           <li><a href="#projects">Projets</a></li>
-          <li><a href="#education">Formation</a></li>
+          <li><a href="#education">Formations</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -78,9 +78,7 @@
   <main id="wrapper">
 
     <!-- =====================================================
-         1) HERO / INTRO
-         - LCP : on évite lazy-load sur le portrait
-         - DA : gros titre + promesse + 3 CTA
+        1) HERO / INTRO — version optimisée avec CTA "Mon approche"
     ====================================================== -->
     <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero">
       <div class="inner hero-inner">
@@ -88,36 +86,43 @@
         <!-- Colonne texte -->
         <div class="hero-col hero-col--text">
           <h1 id="title-hero" class="hero-title">Xavier Rousseau</h1>
-          <p class="hero-role">Expert Data Analyst • Data Science &amp; Engineering • Gestion de projets</p>
+          <p class="hero-role">Data Analyst confirmé · BI & Data Engineering · Gestion de projets</p>
 
           <p class="hero-value">
-            Des <span class="hl">données fiables</span>, des <span class="hl">pipelines qui tournent</span>,
-            des <span class="hl">indicateurs utiles</span>. Solutions data de bout en bout — de la collecte à la décision —
-            avec <span class="hl">qualité</span> et <span class="hl">gouvernance</span> intégrées.
+            Des <span class="hl">données fiables</span> et des <span class="hl">indicateurs clairs</span> pour
+            des décisions mieux éclairées. Je conçois des solutions data de bout en bout, de la collecte
+            à la valorisation, avec <span class="hl">qualité</span> et <span class="hl">gouvernance</span> intégrées.
           </p>
 
           <ul class="hero-status" aria-label="Statut et localisation">
             <li><span class="status-ico" aria-hidden="true">⚡</span> Disponible immédiatement</li>
             <li><span class="status-ico" aria-hidden="true">💼</span> CDI</li>
-            <li><span class="status-ico" aria-hidden="true">🌍</span> Brest • Remote (France)</li>
+            <li><span class="status-ico" aria-hidden="true">🌍</span> Brest · Remote (France)</li>
           </ul>
 
           <ul class="hero-bullets" aria-label="Points forts">
-            <li><strong>End-to-end</strong> — collecte → préparation → pipelines → décision.</li>
-            <li><strong>Fiabilité &amp; gouvernance</strong> — qualité, règles, traçabilité.</li>
-            <li><strong>Industrialisation</strong> — orchestration, monitoring, exploitation durable.</li>
+            <li><strong>De bout en bout</strong> : collecte → préparation → analyses/dashboards → décision.</li>
+            <li><strong>Confiance dans les chiffres</strong> : qualité des données, règles partagées, traçabilité.</li>
+            <li><strong>À l’échelle</strong> : automatisation, orchestration, monitoring pour durer.</li>
           </ul>
 
           <ul class="actions hero-actions">
             <li><a href="#contact" class="button primary cta-lg">Me contacter</a></li>
-            <li><a href="#value" class="button outline cta-lg">Découvrir</a></li>
-            <li><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener" class="button ghost cta-lg" download>Télécharger le CV</a></li>
+            <li><a href="#value" class="button outline cta-lg">Mon approche</a></li>
+            <li>
+              <a href="assets/docs/CV_Xavier_Rousseau.pdf"
+                target="_blank" rel="noopener"
+                class="button ghost cta-lg" download>
+                Télécharger le CV (PDF)
+              </a>
+            </li>
           </ul>
         </div>
 
         <!-- Colonne visuelle -->
         <div class="hero-col hero-col--visual" aria-hidden="true">
           <div class="portrait">
+            <!-- LCP : pas de lazy ici -->
             <img src="images/portrait.png" alt="Portrait de Xavier Rousseau" width="720" height="720" decoding="async">
           </div>
           <div class="hero-blob"></div>
@@ -126,19 +131,17 @@
       </div>
     </section>
 
+
     <!-- =====================================================
-         2) À PROPOS — PATTERN “SPOTLIGHTS” (image à gauche)
-         - Structure Hyperspace : <section class="spotlights"><section>…</section></section>
-         - Image : pleine hauteur, recadrée (object-fit:cover). Cadrage ajusté via style="object-position: …".
-         - Texte : largeur augmentée pour aérer la lecture (max 74ch).
+     2) À PROPOS — PATTERN “SPOTLIGHTS” (image à gauche)
     ====================================================== -->
     <section id="about" class="wrapper style2 spotlights about" aria-labelledby="about-title">
       <section>
         <!-- Colonne IMAGE (image décorative → alt vide) -->
         <a class="image" aria-hidden="true">
           <img src="images/about.png" alt="" loading="lazy" decoding="async"
-               width="1200" height="1600"
-               style="object-position:center 35%">
+              width="1200" height="1600"
+              style="object-position:center 35%">
         </a>
 
         <!-- Colonne TEXTE -->
@@ -147,27 +150,36 @@
             <h2 id="about-title">À propos</h2>
 
             <p>
-              Je conçois des produits data qui tiennent dans la durée : des pipelines qui tournent, des indicateurs qui éclairent,
-              des règles de gestion qu’on peut expliquer. Mon parcours m’a fait passer par les rôles de
-              <strong>data analyst</strong>, <strong>data scientist</strong>, <strong>référent data</strong> et <strong>chef de projet</strong>,
-              avec un fil rouge : relier clairement les besoins métiers et l’ingénierie.
+              Je suis <strong>Data Analyst</strong>, avec un parcours qui m’a mené de la BI aux projets de
+              <strong>data science</strong> et d’<strong>ingénierie de données</strong>. Mon fil conducteur&nbsp;:
+              transformer les données en outils qui aident vraiment à décider.
             </p>
+
             <p>
-              Côté perso, je suis un collectionneur-joueur de consoles rétro, amateur de mangas et passionné du Japon.
-              Cette culture pop nourrit ma curiosité, mon sens du système et mon attention aux détails.
-              Mes années de <strong>judo</strong> ont installé des repères très concrets : <em>respect</em>, <em>contrôle de soi</em>,
-              <em>rigueur</em>, <em>modestie</em>, <em>courage</em> et <em>progression pas à pas</em>.
+              <strong>Chez Financo</strong>, par exemple, mes analyses de connaissance client ont permis d’améliorer
+              le ciblage marketing et de réduire les coûts de campagne grâce à des tests multi-canaux.
+              J’ai conçu des indicateurs stratégiques, présentés en CODIR, et accompagné les équipes
+              marketing dans la prise en main de Tableau pour qu’elles gagnent en autonomie.
             </p>
+
             <p>
-              Professionnellement, j’apporte une vision de bout en bout : collecte, nettoyage, <em>data quality</em>, modélisation utile et restitution adoptée.
-              J’étends aujourd’hui cette approche au <strong>data engineering</strong> : <em>orchestration</em> (Airflow/Kestra/dbt),
-              <em>streaming</em> (Kafka/Redpanda), stockage fiable (PostgreSQL/MinIO), et <em>monitoring</em> (Prometheus/Grafana) — pour que la fiabilité
-              soit <em>conçue</em> dès le départ, pas ajoutée après.
+              Avec le temps, j’ai approfondi la <em>data science</em> (segmentation, scoring, prévisions) et le
+              <em>data engineering</em> : orchestration (Airflow, dbt, Kestra), streaming (Kafka, Redpanda),
+              stockage fiable (PostgreSQL, MinIO) et monitoring (Prometheus, Grafana). Mon objectif reste
+              le même&nbsp;: intégrer la fiabilité et la valeur métier dès la conception.
             </p>
+
             <p>
-              Mon credo tient en trois verbes : <strong>clarifier</strong> (rendre compréhensible), <strong>fiabiliser</strong> (qualité, règles, traçabilité),
-              <strong>valoriser</strong> (des métriques qui aident à décider). Si vous cherchez un profil curieux, rigoureux et capable d’aligner
-              technique et usage, on va bien s’entendre.
+              Hors travail, je suis passionné de mangas et de culture japonaise, joueur et collectionneur
+              de consoles rétro. Ces univers nourrissent ma curiosité, mon sens du détail et mon goût pour
+              les systèmes bien conçus. Mes années de <strong>judo</strong> m’ont appris des repères concrets&nbsp;:
+              <em>respect</em>, <em>rigueur</em>, <em>progression pas à pas</em>.
+            </p>
+
+            <p>
+              Comme dans mes parties de rétro-gaming, j’aime comprendre le système, tester et progresser
+              étape par étape. <strong>Clarifier</strong>, <strong>fiabiliser</strong> et <strong>valoriser</strong> la donnée&nbsp;:
+              c’est mon credo.
             </p>
           </div>
         </div>
@@ -175,54 +187,74 @@
     </section>
 
     <!-- =====================================================
-         3) VALEUR — cartes
+        3) VALEUR — cartes (impact métier, sans outils)
     ====================================================== -->
     <section id="value" class="wrapper style2" aria-labelledby="value-title">
       <div class="inner value-inner">
         <header class="value-header">
-          <h2 id="value-title">Ce que j’apporte — Métier &amp; Valeur</h2>
-          <p class="lead">Du besoin métier à l’usage, en passant par la qualité et l’industrialisation.</p>
+          <h2 id="value-title">Ce que j’apporte — Métier &amp; valeur</h2>
+          <p class="lead">Du besoin à l’usage : clarté des indicateurs, fiabilité des données, adoption par les équipes.</p>
         </header>
 
         <div class="value-grid" role="list" aria-label="Synthèse de valeur">
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></span>
-              <h3>Analyses stratégiques &amp; ciblages</h3>
+              <h3>Analyses utiles</h3>
             </div>
-            <p>Référentiels clients unifiés, segmentations marketing, ciblages précis (exclusions RGPD), analyses des ventes.</p>
+            <ul>
+              <li>Segmentations et ciblages fiables.</li>
+              <li>Référentiels clairs et partagés.</li>
+              <li>Lecture simple des ventes et des performances.</li>
+            </ul>
           </article>
 
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
-              <h3>Tableaux de bord clairs &amp; adoptés</h3>
+              <h3>Tableaux de bord adoptés</h3>
             </div>
-            <p>Dashboards interactifs, KPI co-construits avec les métiers, suivi de la performance, formation à l’usage.</p>
+            <ul>
+              <li>KPI co-construits avec les métiers.</li>
+              <li>Navigation intuitive, prise en main rapide.</li>
+              <li>Suivi régulier de la performance.</li>
+            </ul>
           </article>
 
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
-              <h3>Modélisation &amp; prévisions utiles</h3>
+              <h3>Modélisation pragmatique</h3>
             </div>
-            <p>Projections, scores, indicateurs de performance, tests statistiques, documentation claire et pragmatique.</p>
+            <ul>
+              <li>Prévisions et scores orientés décision.</li>
+              <li>Indicateurs compréhensibles et sourcés.</li>
+              <li>Tests statistiques expliqués simplement.</li>
+            </ul>
           </article>
 
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
-              <h3>Qualité &amp; gouvernance</h3>
+              <h3>Qualité &amp; conformité</h3>
             </div>
-            <p>Règles de gestion documentées, contrôles qualité, traçabilité, conformité RGPD sur les flux critiques.</p>
+            <ul>
+              <li>Règles de gestion documentées.</li>
+              <li>Traçabilité des calculs et des corrections.</li>
+              <li>Respect du RGPD sur les flux sensibles.</li>
+            </ul>
           </article>
 
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
-              <h3>Automatisation &amp; fiabilité</h3>
+              <h3>Automatisation efficace</h3>
             </div>
-            <p>Industrialisation des analyses récurrentes, orchestration des traitements, monitoring de la fiabilité.</p>
+            <ul>
+              <li>Analyses récurrentes industrialisées.</li>
+              <li>Exécutions fiables et prévisibles.</li>
+              <li>Alertes en cas d’anomalie.</li>
+            </ul>
           </article>
 
           <article class="card" role="listitem">
@@ -230,7 +262,11 @@
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-people-arrows"></i></span>
               <h3>Lien métier ↔ IT</h3>
             </div>
-            <p>Ateliers de cadrage, traduction en solutions concrètes, suivi de projet de la conception à la recette.</p>
+            <ul>
+              <li>Ateliers de cadrage concrets.</li>
+              <li>Traduction en solutions livrables.</li>
+              <li>Suivi jusqu’à la recette utilisateur.</li>
+            </ul>
           </article>
         </div>
 
@@ -242,235 +278,407 @@
     </section>
 
     <!-- =====================================================
-         4) COMPÉTENCES — cartes
+        4) COMPÉTENCES — cartes (version pro & compacte)
     ====================================================== -->
     <section id="skills" class="wrapper style2" aria-labelledby="skills-title">
       <div class="inner value-inner">
         <header class="value-header">
           <h2 id="skills-title">Compétences techniques</h2>
-          <p class="lead">Outils &amp; méthodes — de la collecte à la valorisation.</p>
+          <p class="lead">Analyse, reporting, modélisation et ingénierie des données.</p>
         </header>
 
         <div class="value-grid" role="list" aria-label="Compétences">
-          <article class="card" role="listitem">
-            <div class="card-head">
-              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
-              <h3>Collecte &amp; pipelines</h3>
-            </div>
-            <p>Python, SQL — Orchestration : Airflow, Kestra, dbt — Ingestion &amp; streaming : Kafka/Redpanda, MinIO.</p>
-          </article>
 
-          <article class="card" role="listitem">
-            <div class="card-head">
-              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
-              <h3>Analyse &amp; modélisation</h3>
-            </div>
-            <p>Stats &amp; économétrie (SAS, R, Python) — Prévisions, scores, segmentations — Data cleaning &amp; EDA.</p>
-          </article>
-
+          <!-- 1. Analyse & BI (priorité Data Analyst / BI) -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-chart-bar"></i></span>
-              <h3>Visualisation &amp; pilotage</h3>
+              <h3>Analyse &amp; BI</h3>
             </div>
-            <p>Power BI, Tableau, Metabase — Kibana pour le suivi produit &amp; technique.</p>
+            <ul>
+              <li>SQL avancé (PostgreSQL, Oracle, MySQL)</li>
+              <li>Power BI, Tableau, Metabase</li>
+              <li>Conception de KPI et tableaux de bord</li>
+              <li>Analyse exploratoire et data storytelling</li>
+            </ul>
           </article>
 
+          <!-- 2. Modélisation & statistiques -->
+          <article class="card" role="listitem">
+            <div class="card-head">
+              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
+              <h3>Modélisation &amp; statistiques</h3>
+            </div>
+            <ul>
+              <li>Prévisions, scoring, segmentation</li>
+              <li>Économétrie et validation statistique</li>
+              <li>Préparation des données et contrôles de cohérence</li>
+            </ul>
+          </article>
+
+          <!-- 3. Pipelines & orchestration (ouverture Data Engineer) -->
+          <article class="card" role="listitem">
+            <div class="card-head">
+              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+              <h3>Pipelines &amp; orchestration</h3>
+            </div>
+            <ul>
+              <li>Airflow, Kestra</li>
+              <li>Kafka / Redpanda, Airbyte, MinIO</li>
+              <li>Spark, Docker / Docker Compose</li>
+              <li>ELT/ETL et automatisations récurrentes</li>
+            </ul>
+          </article>
+
+          <!-- 4. Données & plateformes -->
+          <article class="card" role="listitem">
+            <div class="card-head">
+              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-database"></i></span>
+              <h3>Données &amp; plateformes</h3>
+            </div>
+            <ul>
+              <li>Bases relationnelles et NoSQL</li>
+              <li>Modélisation analytique et schémas en étoile</li>
+              <li>Stockage objet et fichiers structurés</li>
+              <li>Intégration avec écosystèmes SI</li>
+            </ul>
+          </article>
+
+          <!-- 5. Qualité, gouvernance & conformité -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
               <h3>Qualité &amp; gouvernance</h3>
             </div>
-            <p>Great Expectations, tests Python/SQL — Documentation &amp; traçabilité — Monitoring Prometheus/Grafana.</p>
+            <ul>
+              <li>Tests SQL/Python et contrôles automatisés</li>
+              <li>Traçabilité et documentation des règles</li>
+              <li>Conformité RGPD et auditabilité des flux</li>
+            </ul>
           </article>
+
+          <!-- 6. Observabilité & pilotage produit/tech -->
+          <article class="card" role="listitem">
+            <div class="card-head">
+              <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-wave-square"></i></span>
+              <h3>Observabilité</h3>
+            </div>
+            <ul>
+              <li>Kibana et Grafana</li>
+              <li>Suivi des usages et des indicateurs techniques</li>
+              <li>Alertes et supervision des traitements</li>
+            </ul>
+          </article>
+
         </div>
       </div>
     </section>
 
     <!-- =====================================================
-         5) EXPÉRIENCES (chronologie compacte)
+        5) EXPÉRIENCES — chronologie compacte & impact
     ====================================================== -->
     <section id="experience" class="wrapper style3 fade-up" aria-labelledby="exp-title">
       <div class="inner">
         <h2 id="exp-title">Expériences clés</h2>
-        <p class="muted">Progression constante : de la BI au rôle de référent data en finance, puis vers des projets analytiques complexes.</p>
+        <p class="muted">Un parcours qui combine analyse de données, pilotage BI, modélisation statistique et architecture de flux.</p>
 
+        <!-- Jack Data / BNP Paribas -->
         <article class="box">
           <header>
-            <h3>Consultant Data Analyst Senior — Jack Data (mission BNP Paribas)</h3>
-            <p><time datetime="2023">2023</time>–<time datetime="2024">2024</time></p>
+            <h3>Consultant Data Analyst Senior · Jack Data (mission BNP Paribas)</h3>
+            <p><time datetime="2023-09">sept. 2023</time> – <time datetime="2024-10">oct. 2024</time></p>
           </header>
+          <p><em>Mission pour le département Climate Analytics &amp; Alignment. Objectif : fiabiliser et documenter les indicateurs ESG utilisés dans le reporting réglementaire et stratégique.</em></p>
           <ul>
-            <li>Diagnostic &amp; cartographie de la chaîne de données, fiabilisation.</li>
-            <li>Nettoyage des flux, recalcul d’indicateurs, règles de calcul cohérentes.</li>
-            <li>Documentation &amp; traçabilité pour audits.</li>
-            <li>Restitution : tableaux de bord Power BI.</li>
+            <li>Diagnostic complet de la chaîne de données ESG : identification des anomalies, cartographie des risques, recommandations de fiabilisation.</li>
+            <li>Recalcul et harmonisation des indicateurs pour assurer la cohérence entre reporting interne et exigences externes.</li>
+            <li>Documentation claire des règles de calcul et mise en place d’une traçabilité complète pour répondre aux audits.</li>
+            <li>Restitution exécutive avec Power BI : tableaux de bord simplifiés, adoptés par le département pour piloter les engagements.</li>
+            <li>Collaboration étroite avec data scientists, métiers et DSI pour aligner exigences business et contraintes techniques.</li>
           </ul>
+          <p class="muted">
+            <strong>Rôles :</strong> Data Analyst (analyse et restitution), Data Scientist (score ESG et indicateurs), Chef de projet data (coordination et cadrage).<br>
+            <strong>Environnement :</strong> Python, SQL, Power BI, Jupyter
+          </p>
         </article>
 
+        <!-- Qwant -->
         <article class="box">
           <header>
-            <h3>Data Analyst — Qwant</h3>
-            <p><time datetime="2022">2022</time>–<time datetime="2023">2023</time></p>
+            <h3>Data Analyst · Qwant</h3>
+            <p><time datetime="2022-06">juin 2022</time> – <time datetime="2023-02">févr. 2023</time></p>
           </header>
+          <p><em>Moteur de recherche français. Seul analyste de l’entreprise, en lien direct avec produit, IT et marketing pour fiabiliser les indicateurs et donner une visibilité claire sur l’usage.</em></p>
           <ul>
-            <li>Dashboards stratégiques, KPI clairs adoptés par produit &amp; marketing.</li>
-            <li>Structuration des logs, clics et segments utilisateurs.</li>
-            <li>Automatisation Python/SQL.</li>
-            <li>Benchmark BI (Tableau/Metabase/Superset).</li>
+            <li>Refonte des tableaux de bord stratégiques (homepage, usage produit) : définition des KPI, validation avec les métiers, adoption par la direction.</li>
+            <li>Structuration des bases analytiques : exploitation des logs et clics pour créer des segments utilisateurs fiables.</li>
+            <li>Automatisation des analyses récurrentes en Python et SQL afin de fiabiliser les résultats et gagner du temps.</li>
+            <li>Suivi des indicateurs techniques et produit avec Kibana et Grafana, rapprochement usage et monitoring.</li>
+            <li>Évaluation des outils BI (Metabase, Tableau, Superset) et recommandations pour un choix adapté aux besoins internes.</li>
           </ul>
+          <p class="muted">
+            <strong>Rôles :</strong> Data Analyst (pilotage des KPI), BI Analyst (dashboards), Data Engineer (structuration et automatisation des flux).<br>
+            <strong>Environnement :</strong> SQL, Python, Elasticsearch, Kibana, Grafana, Zeppelin, Jira, Confluence
+          </p>
         </article>
 
+        <!-- Financo -->
         <article class="box">
           <header>
-            <h3>Data Analyst / Référent Data — Financo (Groupe Crédit Mutuel Arkéa)</h3>
-            <p><time datetime="2014">2014</time>–<time datetime="2022">2022</time></p>
+            <h3>Data Analyst / Référent Data · Financo (Groupe Crédit Mutuel Arkéa)</h3>
+            <p><time datetime="2014-03">mars 2014</time> – <time datetime="2022-05">mai 2022</time></p>
           </header>
+          <p><em>Filiale de crédit à la consommation. Rôle central de référent data, interface métiers/DSI, sur des projets de modernisation BI et de gouvernance.</em></p>
           <ul>
-            <li>Référentiel client unifié — règles de gestion, documentation, validation des flux.</li>
-            <li>Data lake marketing/commerce — cas d’usage analytiques.</li>
-            <li>Pilotage budgétaire — indicateurs présentés en CODIR.</li>
-            <li>Industrialisation SQL/SAS — conformité RGPD.</li>
+            <li>Conception et fiabilisation d’un référentiel client unifié : cadrage, règles de gestion, documentation, mise en production.</li>
+            <li>Mise en place du data lake marketing/commerce (Hadoop, Hive) et cadrage des premiers cas d’usage analytiques.</li>
+            <li>Développement de traitements automatisés en SQL et SAS pour le marketing, la finance et le pilotage commercial ; migration SAS Desktop vers SAS Serveur.</li>
+            <li>Modélisation d’indicateurs stratégiques (lifetime value, scoring comportemental, prévisions budgétaires) présentés en CODIR.</li>
+            <li>Conception de tableaux de bord sous Tableau et <strong>formation des responsables marketing</strong> pour une prise en main autonome.</li>
+            <li>Analyses de connaissance client : amélioration des ciblages, suivi des rendements, optimisation des coûts via tests multi-canaux.</li>
+            <li>Contrôles qualité systématiques et intégration des exigences RGPD pour sécuriser les flux.</li>
           </ul>
+          <p class="muted">
+            <strong>Rôles :</strong> Data Analyst (analyses et reporting), BI Analyst (dashboards et formation), Chef de projet data (référentiel et data lake), Data Scientist (segmentation, scoring, prévisions).<br>
+            <strong>Environnement :</strong> SQL, SAS, R, Tableau, Business Objects, Hadoop/Hive, Jira, Confluence
+          </p>
         </article>
+
+        <!-- Anaya -->
+        <article class="box">
+          <header>
+            <h3>Consultant Décisionnel &amp; AMOA · Anaya</h3>
+            <p><time datetime="2011-10">oct. 2011</time> – <time datetime="2013-12">déc. 2013</time></p>
+          </header>
+          <p><em>Cabinet de conseil BI. Missions longues pour Crédit Agricole Consumer Finance puis pour le Ministère de l’Économie et des Finances.</em></p>
+          <ul>
+            <li><strong>Crédit Agricole Consumer Finance</strong> : tests fonctionnels du moteur de règles crédit (ONE HORUS) et recette des bases de ciblage CRM ; simulation de scores de solvabilité unifiés (Sofinco et Finaref) ; analyses marketing automatisées et reporting décisionnel.</li>
+            <li><strong>Ministère de l’Économie et des Finances</strong> : AMOA sur la refonte d’un outil de pilotage du recouvrement ; recueil des besoins, suivi MOE/MOA, support utilisateurs et requêtes SAS.</li>
+          </ul>
+          <p class="muted">
+            <strong>Rôles :</strong> BI Analyst (reporting), Chef de projet data (AMOA et cadrage), Data Scientist junior (scoring crédit).<br>
+            <strong>Environnement :</strong> SAS, SQL, IBM DSV Toolkit, Jira, Confluence
+          </p>
+        </article>
+
       </div>
     </section>
 
     <!-- =====================================================
-         6) PROJETS
+     6) PROJETS
     ====================================================== -->
     <section id="projects" class="wrapper style2" aria-labelledby="projects-title">
       <div class="inner value-inner">
         <header class="value-header">
           <h2 id="projects-title">Projets personnels</h2>
-          <p class="lead">Aperçu : ingestion, modélisation, qualité, visualisation.</p>
+          <p class="lead">De l’exploration de données à l’ingénierie de bout en bout.</p>
         </header>
 
         <div class="value-grid" role="list">
+
+          <!-- Datalyzer -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-microscope"></i></span>
-              <h3>Datalyzer — EDA automatisée</h3>
+              <h3>
+                <a href="https://github.com/xavrousseau/datalyzer" target="_blank" rel="noopener">
+                  Datalyzer · EDA automatisée
+                </a>
+              </h3>
             </div>
-            <p>Exploration rapide : contrôles qualité (manquants, doublons, outliers), visualisations claires, scoring de fiabilité.</p>
+            <p class="status">Finalisé</p>
+            <p>
+              Application Streamlit pour explorer rapidement des données tabulaires : contrôles qualité
+              (valeurs manquantes, doublons, outliers), scoring de fiabilité et visualisations interactives.
+              <br><a href="https://datalyzer.streamlit.app/" target="_blank" rel="noopener">Voir la démo en ligne</a>
+            </p>
           </article>
 
+          <!-- Mangadvisor -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-              <h3>Moteur de recommandation</h3>
+              <h3>
+                <a href="https://github.com/xavrousseau/mangadvisor" target="_blank" rel="noopener">
+                  Mangadvisor · Recommandation de mangas
+                </a>
+              </h3>
             </div>
-            <p>Collecte automatisée, PostgreSQL, profils utilisateurs, filtrage collaboratif — généralisable à d’autres domaines.</p>
+            <p class="status">En refonte</p>
+            <p>
+              Moteur de recommandations basé sur des profils lecteurs et une base PostgreSQL.
+              Objectif : filtrage collaboratif, enrichissement de profils, API et interface de consultation.
+            </p>
           </article>
 
+          <!-- Sport Data Solution -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
-              <h3>Stack data open-source</h3>
+              <h3>
+                <a href="https://github.com/xavrousseau/sport-data-solution" target="_blank" rel="noopener">
+                  Sport Data Solution · Stack data open-source
+                </a>
+              </h3>
             </div>
-            <p>Pipelines (Airflow/Kestra/dbt), MinIO + PostgreSQL, monitoring Prometheus &amp; Grafana.</p>
+            <p class="status">En finalisation</p>
+            <p>
+              Prototype d’une architecture de données moderne pour analyser l’activité sportive des employés,
+              incluant collecte, traitement, orchestration, monitoring et visualisation.
+            </p>
           </article>
+
         </div>
 
         <footer class="value-cta">
-          <a href="https://github.com/xsorouz" class="button outline" target="_blank" rel="noopener">Voir plus sur GitHub</a>
+          <a href="https://github.com/xavrousseau" class="button outline" target="_blank" rel="noopener">
+            Voir plus sur GitHub
+          </a>
         </footer>
       </div>
     </section>
 
-    <!-- =====================================================
-         7) FORMATION
-    ====================================================== -->
-    <section id="education" class="wrapper style3 fade-up" aria-labelledby="edu-title">
-      <div class="inner">
-        <h2 id="edu-title">Formation</h2>
-        <article class="box">
-          <header>
-            <h3>Data Engineer — OpenClassrooms</h3>
-            <p><time datetime="2024">2024</time> • Bac+5 (par projets)</p>
-          </header>
-          <ul>
-            <li>Pipelines : Airflow, Kestra, dbt.</li>
-            <li>Stockage : PostgreSQL, MongoDB, MinIO.</li>
-            <li>Qualité &amp; monitoring : tests, traçabilité, Prometheus/Grafana.</li>
-          </ul>
-        </article>
+  <!-- =====================================================
+      7) FORMATION & CERTIFICATIONS
+  ====================================================== -->
+  <section id="education" class="wrapper style3 fade-up" aria-labelledby="edu-title">
+    <div class="inner">
+      <h2 id="edu-title">Formations & Certifications</h2>
 
-        <article class="box">
-          <header>
-            <h3>Master 2 Statistiques &amp; Économétrie — Université de Rennes 1</h3>
-            <p><time datetime="2011">2010–2011</time></p>
-          </header>
-          <ul>
-            <li>Économétrie avancée, séries temporelles, actuariat, scoring.</li>
-            <li>Prévisions marketing, analyse du risque, études de marché.</li>
-          </ul>
-        </article>
+      <!-- Data Engineer -->
+      <article class="box">
+        <header>
+          <h3>Titre Data Engineer (RNCP niveau 7) — OpenClassrooms</h3>
+          <p><time datetime="2024">2024–2025</time> • Bac+5 (par projets)</p>
+        </header>
+        <p><em>Formation diplômante en 13 projets, couvrant l’ensemble du cycle de vie des données.</em></p>
+        <ul>
+          <li>Conception de pipelines et architectures data (Airflow, dbt, Kestra, Kafka, Spark).</li>
+          <li>Ingestion, stockage et orchestration (PostgreSQL, NoSQL, MinIO).</li>
+          <li>Qualité et monitoring (tests automatisés, traçabilité, Prometheus/Grafana).</li>
+          <li>Analyse prédictive et machine learning appliqué aux données métier.</li>
+          <li>Gestion de projets data de bout en bout (cadrage, planification, livraison).</li>
+        </ul>
+      </article>
 
-        <article class="box">
-          <header>
-            <h3>Licence Mathématiques — Université de Bretagne Occidentale</h3>
-            <p><time datetime="2009">2008–2009</time></p>
-          </header>
-          <ul>
-            <li>Modélisation, probabilités et statistiques.</li>
-            <li>Informatique scientifique.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+      <!-- Master -->
+      <article class="box">
+        <header>
+          <h3>Master 2 Statistiques &amp; Économétrie — Université Rennes 1</h3>
+          <p><time datetime="2009">2009–2011</time></p>
+        </header>
+        <p><em>Formation d’ingénieurs statisticiens et économètres, au service de l’aide à la décision.</em></p>
+        <ul>
+          <li>Économétrie avancée (régressions, panels, micro-économétrie).</li>
+          <li>Séries temporelles, actuariat, prévisions et analyse du risque.</li>
+          <li>Datamining, scoring, géomarketing et fiabilité des systèmes.</li>
+          <li>Stage long en entreprise pour appliquer les modèles prédictifs et les analyses quantitatives.</li>
+        </ul>
+      </article>
 
-    <!-- =====================================================
-         8) CONTACT
-    ====================================================== -->
-    <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
-      <div class="inner">
-        <h2 id="contact-title">Contact</h2>
-        <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
+      <!-- Licence -->
+      <article class="box">
+        <header>
+          <h3>Licence Mathématiques — Université Rennes 1</h3>
+          <p><time datetime="2008">2008–2009</time></p>
+        </header>
+        <p><em>Parcours en mathématiques fondamentales et appliquées.</em></p>
+        <ul>
+          <li>Probabilités, analyse, algèbre, optimisation.</li>
+          <li>Éléments de statistique et d’économétrie.</li>
+          <li>Modélisation mathématique et simulations numériques.</li>
+          <li>Compétences transverses : raisonnement rigoureux, démonstration, calcul scientifique.</li>
+        </ul>
+      </article>
 
-        <div class="split style1">
-          <!-- Formulaire (démo) -->
-          <section aria-label="Formulaire de contact">
-            <form method="post" action="#">
-              <div class="fields">
-                <div class="field half">
-                  <label for="name">Nom</label>
-                  <input type="text" name="name" id="name" autocomplete="name" />
-                </div>
-                <div class="field half">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" autocomplete="email" />
-                </div>
-                <div class="field">
-                  <label for="message">Message</label>
-                  <textarea name="message" id="message" rows="5"></textarea>
-                </div>
+      <!-- Certifications -->
+      <article class="box">
+        <header>
+          <h3>Certifications professionnelles</h3>
+          <p><time datetime="2022">2022–2023</time></p>
+        </header>
+        <ul>
+          <li><strong>PL-300 : Microsoft Power BI Data Analyst</strong> — Udemy (2023).</li>
+          <li><strong>Tableau Certified Data Analyst (prep)</strong> — Udemy (2023).</li>
+          <li><strong>Tableau Data Analyst Certification Prep</strong> — Udemy (2023).</li>
+          <li><strong>Tableau 2022 A–Z : Hands-On Training</strong> — Udemy (2023).</li>
+          <li><strong>Dataiku Core Designer</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
+          <li><strong>Dataiku ML Practitioner</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
+          <li><strong>Les Data Sciences de A à Z</strong> — Udemy (2022).</li>
+        </ul>
+      </article>
+     </div>
+  </section>
+
+  <!-- =====================================================
+      8) CONTACT
+  ====================================================== -->
+  <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
+    <div class="inner">
+      <h2 id="contact-title">Contact</h2>
+      <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
+
+      <div class="split style1">
+        <!-- Formulaire mailto -->
+        <section aria-label="Formulaire de contact">
+          <form onsubmit="return sendMailto(event)">
+            <div class="fields">
+              <div class="field half">
+                <label for="name">Nom</label>
+                <input type="text" id="name" autocomplete="name" />
               </div>
-              <ul class="actions">
-                <li><button type="submit" class="button primary">Envoyer</button></li>
-              </ul>
-            </form>
-          </section>
-
-          <!-- Coordonnées -->
-          <section aria-label="Coordonnées et réseaux">
-            <ul class="contact">
-              <li><h3>Localisation</h3><span>Brest (FR) — Remote (France)</span></li>
-              <li><h3>Email</h3><a href="mailto:rousseau.pro@outlook.fr">rousseau.pro@outlook.fr</a></li>
-              <li><h3>Téléphone</h3><a href="tel:+33695290505">+33&nbsp;6&nbsp;95&nbsp;29&nbsp;05&nbsp;05</a></li>
-              <li>
-                <h3>Réseaux</h3>
-                <ul class="icons">
-                  <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
-                  <li><a href="https://github.com/xsorouz" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
-                </ul>
-              </li>
-              <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener">Télécharger le CV</a></li>
+              <div class="field half">
+                <label for="email">Email</label>
+                <input type="email" id="email" autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5"></textarea>
+              </div>
+            </div>
+            <ul class="actions">
+              <li><button type="submit" class="button primary">Envoyer</button></li>
             </ul>
-          </section>
-        </div>
+          </form>
+          <script>
+          function sendMailto(e){
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const from = document.getElementById('email').value.trim();
+            const msg  = document.getElementById('message').value.trim();
+
+            const to = 'rousseau.pro@outlook.fr';
+            const subject = encodeURIComponent('Contact depuis xavrousseau.github.io');
+            const body = encodeURIComponent(
+              `Nom : ${name}\nEmail : ${from}\n\nMessage :\n${msg}\n`
+            );
+
+            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+            return false;
+          }
+          </script>
+        </section>
+
+        <!-- Coordonnées -->
+        <section aria-label="Coordonnées et réseaux">
+          <ul class="contact">
+            <li><h3>Localisation</h3><span>Landerneau (France)</span></li>
+            <li><h3>Email</h3><a href="mailto:rousseau.pro@outlook.fr">rousseau.pro@outlook.fr</a></li>
+            <li><h3>Téléphone</h3><a href="tel:+33695290505">+33&nbsp;6&nbsp;95&nbsp;29&nbsp;05&nbsp;05</a></li>
+            <li>
+              <h3>Réseaux</h3>
+              <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+                <li><a href="https://github.com/xavrousseau" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
+              </ul>
+            </li>
+            <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener">Télécharger le CV</a></li>
+          </ul>
+        </section>
       </div>
-    </section>
+    </div>
+  </section>
+
 
   </main>
 

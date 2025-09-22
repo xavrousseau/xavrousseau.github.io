@@ -1,11 +1,7 @@
 /* ============================================================================
-   app.css — version commentée (ajustée)
-   Objectif de ce patch : retrouver une taille perçue proche d’Hyperspace
-   tout en gardant ta DA (sombre, net, micro-accents bleus).
-   CHANGEMENTS MAJEURS :
-     • [A] Échelle de base : font-size du body avec paliers responsive.
-     • [B] Titres & .lead : clamps resserrés (moins haut aux grands écrans).
-     • [C] CTA : taille légèrement réduite pour équilibrer la page.
+   app.css — version commentée (concise)
+   But : conserver ta DA sombre, retrouver une échelle “Hyperspace-like”
+   en maîtrisant tailles, lisibilité et compacité.
 ============================================================================ */
 
 /* ===== 0) RESET & BASE ===== */
@@ -13,17 +9,18 @@
 html,body{ margin:0; padding:0; }
 html{ -webkit-text-size-adjust:100%; }
 body{
-  /* [A] ÉCHELLE DE BASE — “feeling” Hyperspace (≈15px desktop → 13px mobile) */
-  font-size: 15px;                             /* desktop large */
+  /* Échelle de base : ~15px desktop → ~13px mobile (paliers plus doux) */
+  font-size: 15px;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
                "Segoe UI Emoji", "Segoe UI Symbol";
-  background:#0f172a; /* --bg */
-  color: rgba(241,245,249,.92); /* --text */
-  line-height:1.6;
+  background:#0f172a; /* fond principal */
+  color: rgba(241,245,249,.92); /* texte par défaut */
+  line-height:1.6; /* confort de lecture */
   text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
 }
+/* Paliers responsives : on baisse très progressivement la base */
 @media (max-width:1680px){ body{ font-size:14.5px; } }
 @media (max-width:1280px){ body{ font-size:14px; } }
 @media (max-width:980px) { body{ font-size:13.5px; } }
@@ -31,35 +28,40 @@ body{
 @media (max-width:480px) { body{ font-size:12.5px; } }
 
 img{ max-width:100%; height:auto; display:block; }
-a{ color:#60a5fa; text-decoration:none; text-decoration-thickness:.06em; text-underline-offset:.18em; }
+a{
+  color:#60a5fa;
+  text-decoration:none;
+  text-decoration-thickness:.06em;
+  text-underline-offset:.18em; /* soulignement lisible */
+}
 a:hover{ text-decoration:underline; }
 
-/* ===== 1) TOKENS ===== */
+/* ===== 1) TOKENS (design system léger) ===== */
 :root{
-  --bg:#0f172a;
-  --bg-elev:#111827;
-  --panel:#0b1220;
+  --bg:#0f172a;         /* fond page */
+  --bg-elev:#111827;    /* niveaux élevés (ex : header translucide) */
+  --panel:#0b1220;      /* cartes/panneaux */
   --muted:rgba(241,245,249,.7);
   --text:rgba(241,245,249,.92);
   --text-dim:rgba(241,245,249,.85);
-  --brand:#2563eb;
-  --brand-2:#06b6d4;
-  --accent:#22c55e;
-  --danger:#ef4444;
-  --border:rgba(148,163,184,.25);
+  --brand:#2563eb;      /* bleu principal */
+  --brand-2:#06b6d4;    /* accent cyan */
+  --accent:#22c55e;     /* succès / accent secondaire */
+  --danger:#ef4444;     /* erreurs */
+  --border:rgba(148,163,184,.25); /* liseré discret */
 
   --shadow-1:0 6px 24px rgba(0,0,0,.25),0 2px 8px rgba(0,0,0,.15);
   --ring:0 0 0 2px #0b1220,0 0 0 4px rgba(99,102,241,.5);
   --focus-ring:0 0 0 2px #0b1220,0 0 0 4px rgba(34,211,238,.6);
 
-  --container:1120px;
-  --radius:18px;
+  --container:1120px;     /* largeur max de contenu */
+  --radius:18px;          /* rayon par défaut (cartes) */
   --radius-lg:24px;
   --radius-xl:28px;
-  --pad:clamp(16px,2vw,28px);
-  --gap:clamp(16px,2.2vw,28px);
+  --pad:clamp(16px,2vw,28px);   /* padding horizontal adaptatif */
+  --gap:clamp(16px,2.2vw,28px); /* espacement de grille adaptatif */
 
-  /* [B] Tailles “sages” pour le texte de tête et les titres */
+  /* Typo : clamps modérés pour éviter les “titres géants” sur grands écrans */
   --fs-xs:.82rem;
   --fs-sm:.94rem;
   --fs-base:1rem;
@@ -68,23 +70,26 @@ a:hover{ text-decoration:underline; }
   --fs-h2:clamp(1.20rem, 1.6vw + 0.90rem, 1.80rem);
   --fs-h1:clamp(1.70rem, 3.5vw + 0.60rem, 2.60rem);
 
-  --section-y:clamp(52px,8vw,120px);
+  --section-y:clamp(52px,8vw,120px); /* respiration verticale des sections */
 }
 
 /* ===== 2) TYPO ===== */
-h1,h2,h3,h4{ color:var(--text); line-height:1.25; margin:0 0 .6em; font-weight:800; }
+h1,h2,h3,h4{
+  color:var(--text); line-height:1.25; margin:0 0 .6em; font-weight:800;
+}
 h1{ font-size:var(--fs-h1); letter-spacing:.01em; }
 h2{ font-size:var(--fs-h2); letter-spacing:.01em; }
 h3{ font-size:var(--fs-h3); letter-spacing:.005em; }
 p{ margin:0 0 1.1em; }
-.lead{ font-size:var(--fs-lead); color:var(--text-dim); }
-.muted{ color:var(--muted); }
+.lead{ font-size:var(--fs-lead); color:var(--text-dim); } /* sous-titres */
+.muted{ color:var(--muted); } /* texte d’accompagnement */
 
 /* ===== 3) LAYOUT & WRAPPERS ===== */
 .wrapper{ padding:var(--section-y) var(--pad); }
 .wrapper .inner{ max-width:var(--container); margin:0 auto; }
 #wrapper{ position:relative; }
 
+/* Variantes de fond par section (légers dégradés pour la profondeur) */
 .wrapper.style1{ background:transparent; }
 .wrapper.style2{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 40%), var(--bg); }
 .wrapper.style3{ background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(37,99,235,0) 45%); }
@@ -93,16 +98,18 @@ p{ margin:0 0 1.1em; }
 /* ===== 4) SIDEBAR ===== */
 #sidebar{
   position:fixed; left:0; top:0; width:280px; height:100vh;
-  background:rgba(2,6,23,.4); backdrop-filter:blur(8px);
+  background:rgba(2,6,23,.4); backdrop-filter:blur(8px); /* verre dépoli */
   border-right:1px solid var(--border);
   padding:22px 18px; display:none; z-index:50;
 }
 #sidebar .inner{ height:100%; display:flex; align-items:center; }
 #sidebar nav ul{ list-style:none; margin:0; padding:0; }
 #sidebar nav a{
-  display:block; padding:.55rem 0; color:var(--text); font-weight:600; letter-spacing:.01em; opacity:.9;
+  display:block; padding:.55rem 0; color:var(--text); font-weight:600;
+  letter-spacing:.01em; opacity:.9;
 }
 #sidebar nav a:hover{ opacity:1; }
+/* Indication “actif” discrète + pastille */
 #sidebar nav a.active,#sidebar nav a[aria-current="true"]{
   color:#e5edff; text-decoration:none; position:relative;
 }
@@ -114,20 +121,21 @@ p{ margin:0 0 1.1em; }
 }
 @media (min-width:1080px){
   #sidebar{ display:block; }
-  #wrapper,#footer{ margin-left:280px; }
+  #wrapper,#footer{ margin-left:280px; } /* évite le chevauchement */
 }
 
 /* ===== 5) HERO ===== */
 .hero{ position:relative; }
 .fullscreen{ min-height:100svh; display:grid; place-items:center; }
 .hero-inner{
-  display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:clamp(28px,4vw,48px);
+  display:grid; grid-template-columns:1.1fr .9fr; align-items:center;
+  gap:clamp(28px,4vw,48px);
 }
 .hero-col--text{ display:grid; gap:1rem; }
 .hero-title{ font-size:var(--fs-h1); }
 .hero-role{ font-weight:700; opacity:.95; }
 .hero-value{ font-size:var(--fs-lead); opacity:.95; }
-.hl{ color:#e0eaff; text-shadow:0 0 18px rgba(59,130,246,.25); }
+.hl{ color:#e0eaff; text-shadow:0 0 18px rgba(59,130,246,.25); } /* mot-clé mis en valeur */
 
 .hero-status{ display:flex; gap:.9rem 1.2rem; flex-wrap:wrap; margin:.4rem 0 .2rem; list-style:none; padding:0; color:var(--muted); }
 .status-ico{ margin-right:.4rem; }
@@ -144,11 +152,11 @@ p{ margin:0 0 1.1em; }
 .hero-blob{
   position:absolute; inset:-8%; z-index:-1;
   background:radial-gradient(40% 40% at 50% 50%, rgba(37,99,235,.35), rgba(6,182,212,.08) 60%, transparent 70%);
-  filter:blur(28px);
+  filter:blur(28px); /* halo coloré doux */
 }
 @media (max-width:1100px){
   .hero-inner{ grid-template-columns:1fr; }
-  .hero-col--visual{ order:-1; }
+  .hero-col--visual{ order:-1; } /* visuel au-dessus du texte sur mobile */
 }
 
 /* ===== 6) BOUTONS ===== */
@@ -160,21 +168,22 @@ p{ margin:0 0 1.1em; }
   font-weight:700; letter-spacing:.01em; cursor:pointer;
   transition:transform .06s ease, filter .2s ease, background .2s ease, border-color .2s ease;
 }
-/* [C] CTA un cran plus sobre */
+/* Hover/active sobres : évite l’effet “ballon” */
 .button:hover{ transform:translateY(-1px); }
 .button:active{ transform:translateY(0); }
 .button:focus-visible{ box-shadow:var(--focus-ring); }
-.button.primary{ border:0; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; filter:saturate(1.05) contrast(1.05); }
+.button.primary{
+  border:0; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff;
+  filter:saturate(1.05) contrast(1.05);
+}
 .button.primary:hover{ filter:saturate(1.1) contrast(1.1) brightness(1.05); }
 .button.outline{ background:transparent; border-color:rgba(96,165,250,.6); color:#dbeafe; }
 .button.ghost{ background:rgba(255,255,255,.06); color:#e5edff; }
-.cta-lg{ font-size:clamp(0.95rem, 1vw, 1.05rem); }
+.cta-lg{ font-size:clamp(0.95rem, 1vw, 1.05rem); } /* CTA un cran plus discret */
 
 /* ===== 7) SPOTLIGHTS — À PROPOS =====
-   Pattern Hyperspace : .spotlights > section avec .image + .content
-   - Image à gauche : largeur fixe fluide
-   - Texte : largeur max lisible (~74ch)
-   - Mobile : empilement image puis texte
+   Pattern Hyperspace : image fixe fluide + texte limité en largeur
+   Astuce : on piloter le cadrage via style="object-position: x y" sur l’img.
 */
 .spotlights.about > section{
   display:flex; align-items:stretch;
@@ -191,14 +200,13 @@ p{ margin:0 0 1.1em; }
 }
 .spotlights.about > section > .image img{
   width:100%; height:100%;
-  object-fit:cover; /* Remplit la colonne image */
-  /* Le cadrage se règle dans l’HTML via style="object-position: center 35%" */
+  object-fit:cover; /* remplit la colonne sans déformer */
 }
 .spotlights.about > section > .content{
   flex:1; display:flex; align-items:center; padding:clamp(28px,4vw,56px) 0;
 }
 .spotlights.about > section > .content > .inner{
-  max-width:74ch; /* un peu plus large que Hyperspace */
+  max-width:74ch; /* lisibilité des paragraphes longs */
   line-height:1.72;
 }
 @media (max-width:980px){
@@ -215,6 +223,7 @@ p{ margin:0 0 1.1em; }
 .value-inner{ max-width:var(--container); margin:0 auto; }
 .value-header{ text-align:left; margin-bottom:1.3rem; }
 .value-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
+
 .card{
   background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
   padding:calc(var(--pad) * .9); box-shadow:var(--shadow-1);
@@ -222,6 +231,7 @@ p{ margin:0 0 1.1em; }
 }
 .card:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,99,235,.15), 0 4px 12px rgba(0,0,0,.25); }
 .card-head{ display:grid; grid-template-columns:auto 1fr; align-items:center; gap:.8rem; margin-bottom:.6rem; }
+
 .icon-badge{
   width:42px; height:42px; border-radius:12px; display:grid; place-items:center;
   background:radial-gradient(60% 60% at 30% 20%, rgba(59,130,246,.45), rgba(59,130,246,.15));
@@ -234,6 +244,21 @@ p{ margin:0 0 1.1em; }
 @media (max-width:1080px){ .value-grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:680px){ .value-grid{ grid-template-columns:1fr; } }
 
+
+/* ===== PROJETS — style des statuts ===== */
+#projects .card .status {
+  font-size: 0.85em;       /* plus petit que le texte normal */
+  font-style: italic;      /* style discret */
+  color: var(--muted);     /* gris doux cohérent avec ta palette */
+  margin: -0.2rem 0 0.6rem; /* rapproché du titre, espace avant le texte */
+  line-height: 1.4;
+}
+
+
+@media (max-width: 680px){
+  #projects .card .status{ font-size:0.8em; }
+}
+
 /* ===== 9) BOXES ===== */
 .box{
   background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
@@ -243,7 +268,10 @@ p{ margin:0 0 1.1em; }
 .box header h3{ margin:0 0 .25rem; }
 .box header p{ margin:0 0 .6rem; color:var(--muted); }
 
-/* ===== 10) CONTACT ===== */
+/* ===== 10) CONTACT =====
+   Objectif : formulaire compact qui n’écrase pas la colonne “Coordonnées”.
+   Astuce clé : grid 2 colonnes avec minmax(...) + min-width:0 pour éviter l’overflow.
+*/
 .fields{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
 .field{ display:grid; gap:.4rem; }
 .field.half{ grid-column:span 1; }
@@ -251,6 +279,7 @@ p{ margin:0 0 1.1em; }
   .fields{ grid-template-columns:1fr; }
   .field.half{ grid-column:span 1; }
 }
+
 label{ font-weight:600; color:var(--text-dim); }
 input[type="text"],input[type="email"],textarea{
   width:100%; border-radius:12px; border:1px solid var(--border);
@@ -275,7 +304,10 @@ input:focus-visible,textarea:focus-visible{
 .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
 /* ===== 11) TABLES (optionnel) ===== */
-table{ width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+table{
+  width:100%; border-collapse:collapse; background:var(--panel);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; /* rayon effectif */
+}
 thead th{ text-align:left; padding:.8rem 1rem; background:rgba(59,130,246,.15); }
 tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
 
@@ -296,7 +328,7 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
 @keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion:reduce){
   .fade-up{ animation:none; opacity:1; transform:none; }
-  *{ scroll-behavior:auto !important; }
+  *{ scroll-behavior:auto !important; } /* respect accessibilité */
 }
 
 /* ===== 15) ACCESSIBILITÉ ===== */
@@ -307,44 +339,30 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
   position:fixed; left:12px; top:12px; width:auto; height:auto; clip:auto;
   padding:.5rem .75rem; background:#111827; color:#fff; border-radius:8px; box-shadow:var(--focus-ring); z-index:99;
 }
-/* Ancrage confortable pour tout élément porteur d’un id */
+/* Ancrage confortable pour les ancres (#id) sous un header fixe */
 :is(section,h1,h2,h3,h4)[id]{ scroll-margin-top: clamp(64px, 10vh, 120px); }
 
-/* ===== 16) RESPONSIVE FIN ===== */
+/* ===== 16) RESPONSIVE CONTAINER ===== */
 @media (max-width:1240px){ :root{ --container:1060px; } }
 @media (max-width:1120px){ :root{ --container:980px; } }
-@media (max-width:980px){ :root{ --container:900px; } }
-@media (max-width:860px){ :root{ --container:760px; } }
-@media (max-width:720px){ :root{ --container:640px; } }
+@media (max-width:980px) { :root{ --container:900px; } }
+@media (max-width:860px) { :root{ --container:760px; } }
+@media (max-width:720px) { :root{ --container:640px; } }
 
-/* ===================== CONTACT — Layout 2 colonnes ===================== */
-/* Met la grille 2 colonnes (formulaire + coordonnées) et aligne en haut. */
+/* ===================== CONTACT — Split 2 colonnes robuste =====================
+   - La 1re colonne (formulaire) est bornée par --contact-form-max
+   - min-width:0 sur les sections pour empêcher l’overflow des inputs
+   - Paliers : on garde 2 colonnes jusqu’à ~980px, puis on empile
+=============================================================================== */
 #contact .split{
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;        /* form un peu plus large */
-  gap: clamp(20px, 3vw, 40px);
-  align-items: start;                         /* top align, pas centré */
-}
-#contact .split > section{ min-width: 0; }    /* évite qu’un input trop long pousse la colonne */
-
-/* Empilement mobile propre */
-@media (max-width: 980px){
-  #contact .split{ grid-template-columns: 1fr; }
-}
-
-/* ====================== CONTACT — Mise en page solide ====================== */
-/* 1) Deux colonnes : on borne la largeur du formulaire pour qu'il n'étouffe pas
-      la colonne "Coordonnées". On utilise minmax(0, …) pour éviter tout overflow. */
-#contact .split{
-  --contact-form-max: 720px;                  /* ajuste 660–760 selon goût */
+  --contact-form-max: 720px; /* ajuste 660–760px selon ton contenu */
   display: grid;
   grid-template-columns: minmax(0, var(--contact-form-max)) minmax(0, 1fr);
   gap: clamp(20px, 3vw, 40px);
-  align-items: start;
+  align-items: start; /* aligne en haut, évite les hauteurs égales forcées */
 }
-#contact .split > section{ min-width: 0; }    /* indispensable en grid */
+#contact .split > section{ min-width: 0; } /* indispensable en grid pour couper les longs mots/URLs */
 
-/* 2) Grille interne du formulaire, compacte et sans débordement */
 #contact .fields{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -352,40 +370,35 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
   row-gap: clamp(12px, 1.4vw, 16px);
 }
 #contact .field{ min-width: 0; }
-#contact .field:nth-child(3){ grid-column: 1 / -1; } /* "Message" sur 2 colonnes */
+#contact .field:nth-child(3){ grid-column: 1 / -1; } /* “Message” sur 2 colonnes */
 
-/* 3) Champs un peu moins hauts + coins sages */
 #contact input[type="text"],
 #contact input[type="email"],
 #contact textarea{
-  padding: .7rem .9rem;                        /* avant : .75–.9rem */
-  border-radius: 10px;                         /* avant : 12px */
+  padding: .7rem .9rem;   /* un peu plus compact */
+  border-radius: 10px;    /* rayons plus “sages” */
   line-height: 1.35;
 }
 #contact textarea{ min-height: 110px; resize: vertical; }
 
-/* 4) Actions : bouton qui ne “flotte” pas trop */
 #contact .actions{ margin-top: .5rem; gap: .6rem; }
 #contact .actions .button{ padding-inline: .95rem; }
 
-/* 5) Colonne "Coordonnées" : titres moins massifs pour gagner de la place */
 #contact .contact h3{
-  font-size: 1.05rem;                          /* avant bien plus grand */
+  font-size: 1.05rem; /* titres plus discrets pour ménager l’espace */
   margin: 0 0 .35rem;
 }
 #contact .contact li{ margin-bottom: .85rem; }
 #contact .icons a{ width: 38px; height: 38px; border-radius: 10px; }
 
-/* 6) Palier responsive : on garde les 2 colonnes un peu plus longtemps
-      puis on empile proprement sous 980 px. */
 @media (max-width: 1180px){
   #contact .split{
-    --contact-form-max: 640px;
+    --contact-form-max: 640px; /* rétrécit le form pour libérer la 2e colonne */
     gap: 24px;
   }
 }
 @media (max-width: 980px){
-  #contact .split{ grid-template-columns: 1fr; }
+  #contact .split{ grid-template-columns: 1fr; } /* empilement */
   #contact .fields{ grid-template-columns: 1fr; }
-  #contact .field:nth-child(3){ grid-column: auto; } /* message = 1 colonne */
+  #contact .field:nth-child(3){ grid-column: auto; } /* message sur 1 colonne */
 }
