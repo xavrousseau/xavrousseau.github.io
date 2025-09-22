@@ -609,9 +609,9 @@
       </article>
      </div>
   </section>
-
+  
   <!-- =====================================================
-     8) CONTACT — mailto robuste (sans backend)
+      8) CONTACT — mailto avec fallback
   ====================================================== -->
   <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
     <div class="inner">
@@ -619,7 +619,7 @@
       <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
 
       <div class="split style1">
-        <!-- Formulaire mailto -->
+        <!-- Formulaire -->
         <section aria-label="Formulaire de contact">
           <form id="contact-form" novalidate>
             <div class="fields">
@@ -641,14 +641,12 @@
               <li><button type="button" class="button primary" id="send-btn">Envoyer</button></li>
             </ul>
 
-            <noscript>
-              <p class="muted">
-                JavaScript est désactivé. Envoyez-moi un email :
-                <a href="mailto:rousseau.pro@outlook.fr?subject=Contact%20depuis%20xavrousseau.github.io">
-                  rousseau.pro@outlook.fr
-                </a>.
-              </p>
-            </noscript>
+            <!-- Fallback caché -->
+            <p id="fallback" class="muted" style="display:none; margin-top:1rem;">
+              📧 Impossible d’ouvrir automatiquement ton client mail ?  
+              Copie-colle cette adresse :  
+              <strong>rousseau.pro@outlook.fr</strong>
+            </p>
           </form>
 
           <script>
@@ -657,9 +655,9 @@
               const nameI = document.getElementById('name');
               const mailI = document.getElementById('email');
               const msgI  = document.getElementById('message');
+              const fallback = document.getElementById('fallback');
 
               function encodeBody(lines) {
-                // Chaque ligne encodée puis join CRLF
                 return lines.map(encodeURIComponent).join('%0D%0A');
               }
 
@@ -681,8 +679,11 @@
                   msg
                 ]);
 
-                // Navigation directe (fiable sur GitHub Pages + Hyperspace)
+                // Navigation directe vers le mailto
                 window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+                // Si rien ne se passe → afficher le fallback
+                setTimeout(() => { fallback.style.display = 'block'; }, 2000);
               });
             })();
           </script>
@@ -707,6 +708,7 @@
       </div>
     </div>
   </section>
+
 
   </main>
 
