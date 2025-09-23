@@ -427,10 +427,28 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
 /* Micro-ajustement CTA très petits écrans */
 @media (max-width:420px){ .cta-lg{ font-size:.95rem; } }
 
-/* ===== 16) GARDE-FOUS anti “menu figé” en mobile ========================== */
-/* Parano : neutralise toute règle tierce qui forcerait un fixed/sticky sous 1080px. */
+/* ===== 16) HOTFIX NAV MOBILE — défiler, jamais collée ===================== */
 @media (max-width:1079px){
-  #sidebar{ position:static !important; top:auto !important; }
-  #wrapper, #footer{ margin-left:0 !important; }
-  html, body{ height:auto; overflow:auto !important; }
+  /* Sidebar : dans le flux, jamais fixed/sticky */
+  #sidebar{
+    position: static !important;
+    top: auto !important; bottom: auto !important;
+    left: auto !important; right: auto !important;
+    width: 100% !important; height: auto !important;
+    margin: 0 !important;
+    z-index: 5 !important;
+  }
+
+  /* Aucune marge latérale réservée en mobile */
+  #wrapper, #footer{ margin-left: 0 !important; }
+
+  /* Ceinture + bretelles : neutralise tout header/nav potentiellement fixed */
+  header, nav, .topbar, .site-header, .page-header{
+    position: static !important;
+    top: auto !important; bottom: auto !important;
+  }
+
+  /* Le scroll doit se faire sur la page, pas dans un conteneur interne */
+  html, body{ height: auto; overflow: auto !important; }
+  #wrapper{ position: static !important; overflow: visible !important; }
 }
