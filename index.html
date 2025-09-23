@@ -57,8 +57,8 @@
   }
   </script>
 </head>
-
-<body class="is-preload">
+ 
+<body>
   <!-- ============== SKIP LINK (A11Y) ===================== -->
   <a href="#intro" class="skip-link">Aller au contenu</a>
 
@@ -825,6 +825,11 @@
         if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
       });
     })();
+  </script>
+
+  <!-- Retire la classe "is-preload" au chargement pour éviter tout blocage de scroll -->
+  <script>
+    addEventListener('load', () => document.body.classList.remove('is-preload'));
   </script>
 </body>
 </html>
