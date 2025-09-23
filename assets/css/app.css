@@ -1,7 +1,6 @@
 /* ============================================================================
-   app.css 
-   Thème : sombre, sobre, lisible, micro-accents bleus (Hyperspace-like)
-   Structure :
+   app.css — thème sombre, net, lisible (Hyperspace-like)
+   Sommaire
      0) Reset & Base                 10) Contact (form + layout robuste)
      1) Tokens (Design System)       11) Tables
      2) Typo                         12) Footer
@@ -9,8 +8,8 @@
      4) Sidebar (desktop)            14) Animations
      5) Hero (intro)                 15) Accessibilité
      6) Boutons (CTA)                16) Responsive container
-     7) Spotlights — À propos        17) Menu mobile (topbar fluide)
-     8) Cartes / Grilles             18) CTA du hero — compacts
+     7) Spotlights — À propos        17) Menu mobile (topbar fluide, non-sticky)
+     8) Cartes / Grilles             18) CTA du hero — compacts + .button--sm
      9) Boxes
 ============================================================================ */
 
@@ -19,7 +18,7 @@
 html, body { margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
 body{
-  /* Échelle “douce” : ~15px desktop → ~13px mobile */
+  /* Échelle “douce” : ~15px desktop → ~13px mobile, par paliers */
   font-size: 15px;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
@@ -30,7 +29,6 @@ body{
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-/* Échelle typographique responsive (paliers doux) */
 @media (max-width:1680px){ body{ font-size:14.5px; } }
 @media (max-width:1280px){ body{ font-size:14px; } }
 @media (max-width:980px) { body{ font-size:13.5px; } }
@@ -42,7 +40,7 @@ a{
   color:#60a5fa;
   text-decoration:none;
   text-decoration-thickness:.06em;
-  text-underline-offset:.18em; /* soulignement lisible */
+  text-underline-offset:.18em;
 }
 a:hover{ text-decoration:underline; }
 
@@ -75,7 +73,7 @@ a:hover{ text-decoration:underline; }
   --gap:clamp(16px,2.2vw,28px);
   --section-y:clamp(52px,8vw,120px);
 
-  /* Typo : clamps modérés (évite les titres gigantesques) */
+  /* Typo (clamps modérés : évite les titres géants) */
   --fs-xs:.82rem;
   --fs-sm:.94rem;
   --fs-base:1rem;
@@ -96,7 +94,7 @@ h1{ font-size:var(--fs-h1); letter-spacing:.01em; }
 h2{ font-size:var(--fs-h2); letter-spacing:.01em; }
 h3{ font-size:var(--fs-h3); letter-spacing:.005em; }
 p{ margin: 0 0 1.1em; }
-.lead{ font-size: var(--fs-lead); color: var(--text-dim); } /* sous-titres */
+.lead{ font-size: var(--fs-lead); color: var(--text-dim); }
 .muted{ color: var(--muted); }
 
 /* ===== 3) LAYOUT & WRAPPERS ===== */
@@ -104,12 +102,10 @@ p{ margin: 0 0 1.1em; }
 .wrapper .inner{
   max-width: var(--container);
   margin: 0 auto;
-  /* NOTE: utile en grilles pour éviter les débordements horizontaux */
-  min-width: 0;
+  min-width: 0; /* anti-overflow dans les grilles */
 }
 #wrapper{ position:relative; }
 
-/* Variantes de fond (profondeur douce) */
 .wrapper.style1{ background: transparent; }
 .wrapper.style2{
   background:
@@ -161,7 +157,7 @@ p{ margin: 0 0 1.1em; }
 .hero-title{ font-size:var(--fs-h1); }
 .hero-role{ font-weight:700; opacity:.95; }
 .hero-value{ font-size:var(--fs-lead); opacity:.95; }
-.hl{ color:#e0eaff; text-shadow:0 0 18px rgba(59,130,246,.25); } /* mise en valeur */
+.hl{ color:#e0eaff; text-shadow:0 0 18px rgba(59,130,246,.25); }
 
 .hero-status{
   display:flex; gap:.9rem 1.2rem; flex-wrap:wrap; margin:.4rem 0 .2rem;
@@ -185,7 +181,7 @@ p{ margin: 0 0 1.1em; }
 }
 @media (max-width:1100px){
   .hero-inner{ grid-template-columns:1fr; }
-  .hero-col--visual{ order:-1; } /* visuel au-dessus du texte sur mobile */
+  .hero-col--visual{ order:-1; }
 }
 
 /* ===== 6) BOUTONS ===== */
@@ -207,7 +203,7 @@ p{ margin: 0 0 1.1em; }
 .button.primary:hover{ filter:saturate(1.1) contrast(1.1) brightness(1.05); }
 .button.outline{ background:transparent; border-color:rgba(96,165,250,.6); color:#dbeafe; }
 .button.ghost{ background:rgba(255,255,255,.06); color:#e5edff; }
-.cta-lg{ font-size:clamp(0.95rem, 1vw, 1.05rem); } /* CTA un cran plus discret */
+.cta-lg{ font-size:clamp(0.95rem, 1vw, 1.05rem); }
 
 /* ===== 7) SPOTLIGHTS — À PROPOS ===== */
 .spotlights.about > section{
@@ -222,7 +218,7 @@ p{ margin: 0 0 1.1em; }
   border-radius:var(--radius-lg);
   border:1px solid var(--border);
   box-shadow:var(--shadow-1);
-  min-width:0; /* NOTE: évite les débordements en grid/flex */
+  min-width:0;
 }
 .spotlights.about > section > .image img{
   width:100%; height:100%; object-fit:cover; display:block;
@@ -249,10 +245,9 @@ p{ margin: 0 0 1.1em; }
 .value-header{ text-align:left; margin-bottom:1.3rem; }
 .value-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr)); /* NOTE: minmax(0,1fr) empêche l’overflow */
+  grid-template-columns:repeat(3, minmax(0,1fr)); /* minmax(0,1fr) = anti-overflow */
   gap:var(--gap);
 }
-
 .card{
   background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
   padding:calc(var(--pad) * .9); box-shadow:var(--shadow-1);
@@ -267,7 +262,6 @@ p{ margin: 0 0 1.1em; }
   display:grid; grid-template-columns:auto 1fr; align-items:center;
   gap:.8rem; margin-bottom:.6rem;
 }
-
 .icon-badge{
   width:42px; height:42px; border-radius:12px; display:grid; place-items:center;
   background:radial-gradient(60% 60% at 30% 20%, rgba(59,130,246,.45), rgba(59,130,246,.15));
@@ -276,7 +270,6 @@ p{ margin: 0 0 1.1em; }
 #value .card h3{ font-size:1.2rem; letter-spacing:.005em; }
 #value .card p{ color:var(--muted); }
 .value-cta{ margin-top:var(--gap); display:flex; gap:.75rem; flex-wrap:wrap; }
-
 @media (max-width:1080px){ .value-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
 @media (max-width:680px){ .value-grid{ grid-template-columns:minmax(0,1fr); } }
 
@@ -291,19 +284,26 @@ p{ margin: 0 0 1.1em; }
 .box header p{ margin:0 0 .6rem; color:var(--muted); }
 
 /* ===== 10) CONTACT =====
-   Grid 2 colonnes robuste (minmax + min-width:0) pour éviter l’overflow.
+   Grille 2 colonnes robuste (minmax + min-width:0). Palier tablette + mobile.
 */
-.fields{
+#contact .split{
+  --contact-form-max: 720px;
+  display: grid;
+  grid-template-columns: minmax(0, var(--contact-form-max)) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 40px);
+}
+#contact .split > section{ min-width:0; } /* évite qu’un input “pousse” la colonne */
+
+#contact .fields{
   display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr)); /* CHANGEMENT: minmax(0,1fr) */
-  gap:.9rem;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  column-gap: clamp(14px, 1.8vw, 18px);
+  row-gap: clamp(12px, 1.4vw, 16px);
 }
-.field{ display:grid; gap:.4rem; min-width:0; }
-.field.half{ grid-column:span 1; }
-@media (max-width:720px){
-  .fields{ grid-template-columns: minmax(0,1fr); }
-  .field.half{ grid-column: span 1; }
-}
+#contact .field{ display:grid; gap:.4rem; min-width:0; }
+#contact .field:nth-child(3){ grid-column: 1 / -1; } /* Message sur 2 colonnes */
+
 label{ font-weight:600; color:var(--text-dim); }
 input[type="text"], input[type="email"], textarea{
   width:100%; border-radius:12px; border:1px solid var(--border);
@@ -318,16 +318,22 @@ input:focus-visible, textarea:focus-visible{
 .actions{ list-style:none; padding:0; margin:.6rem 0 0; display:flex; gap:.75rem; }
 .actions li{ margin:0; }
 
-.icons{ list-style:none; padding:0; margin:0; display:flex; gap:.6rem; }
-.icons a{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:42px; height:42px; border-radius:12px;
-  background:rgba(37,99,235,.18); border:1px solid rgba(96,165,250,.35); color:#dbeafe;
-  text-decoration:none;
-  transition: transform .06s ease, background .2s ease, border-color .2s ease;
+/* Bouton du formulaire : compact comme les CTA */
+#contact .actions .button{
+  min-height:42px; padding:0 .85rem; font-size:.92rem; border-radius:10px;
 }
-.icons a:hover{ transform:translateY(-1px); }
-.icons a:focus-visible{ box-shadow:var(--focus-ring); outline:0; }
+
+/* Palier tablette : form un peu plus étroit pour libérer la 2e colonne */
+@media (max-width:1180px){
+  #contact .split{ --contact-form-max: 640px; gap:24px; }
+}
+
+/* Palier mobile : empilement */
+@media (max-width:980px){
+  #contact .split{ grid-template-columns:1fr; }
+  #contact .fields{ grid-template-columns:1fr; }
+  #contact .field:nth-child(3){ grid-column:auto; } /* Message sur 1 colonne */
+}
 
 /* ===== 11) TABLES ===== */
 table{
@@ -378,11 +384,15 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
 @media (max-width:860px) { :root{ --container:760px; } }
 @media (max-width:720px){ :root{ --container:640px; } }
 
-/* ===== 17) MENU MOBILE — topbar fluide, non-sticky ===== */
+/* ===== 17) MENU MOBILE — topbar fluide, non-sticky =====
+   On neutralise toute chance de rester “figé” (fixed).
+*/
 @media (max-width:1079px){
   #sidebar{
-    display:block;              /* visible en mobile */
-    position:static;            /* défile avec la page */
+    display:block;
+    position: relative !important;  /* défile avec la page */
+    top: auto !important;
+    left: auto !important;
     width:100%; height:auto;
     padding:10px var(--pad);
     background:rgba(2,6,23,.6);
@@ -391,7 +401,7 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
   }
   #sidebar .inner{ height:auto; align-items:center; }
   #sidebar nav ul{
-    display:flex; flex-wrap:wrap; /* passe à la ligne si besoin */
+    display:flex; flex-wrap:wrap;           /* retour à la ligne si besoin */
     gap:.5rem .6rem; margin:0; padding:0; list-style:none;
   }
   #sidebar nav li{ flex:0 0 auto; }
@@ -410,40 +420,27 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
 }
 
 /* ===== 18) CTA DU HERO — compacts + variante ===== */
-/* Patch local au hero (pas global) */
+/* Patch local au hero (évite d’impacter le reste) */
 .hero-actions{ gap:.6rem; }
 .hero-actions .button{
-  min-height:46px;           /* avant 50px */
-  padding:0 .95rem;          /* avant 0 1.15rem */
-  font-size:0.95rem;         /* avant ~1rem */
-  border-radius:12px;        /* avant 14px */
+  min-height:46px;         /* avant 50px */
+  padding:0 .95rem;        /* avant 0 1.15rem */
+  font-size:0.95rem;       /* avant ~1rem */
+  border-radius:12px;      /* avant 14px */
 }
-.hero-actions .cta-lg{ font-size:0.94rem; } /* rend .cta-lg plus sage dans le hero */
+/* Rend .cta-lg plus sage dans le hero */
+.hero-actions .cta-lg{ font-size:0.94rem; }
+/* Très petits écrans : compresser un peu plus */
 @media (max-width:520px){
   .hero-actions .button{
     min-height:42px; padding:0 .8rem; font-size:0.92rem; border-radius:10px;
   }
   .hero-actions{ gap:.5rem; }
 }
-/* Variante générique réutilisable hors hero */
+/* Variante générique réutilisable (appliquez .button--sm sur l’élément) */
 .button--sm{
   min-height:42px;
   padding:0 .85rem;
   font-size:0.92rem;
   border-radius:12px;
-}
-
-/* CONTACT — forcer la grille 2 colonnes sur desktop */
-#contact .split{
-  --contact-form-max: 720px;
-  display: grid !important;
-  grid-template-columns: minmax(0, var(--contact-form-max)) minmax(0, 1fr) !important;
-  align-items: start;
-  gap: clamp(20px, 3vw, 40px);
-}
-#contact .split > section{ min-width:0; }  /* anti-overflow inputs */
-
-/* Palier mobile : empilement propre */
-@media (max-width:980px){
-  #contact .split{ grid-template-columns:1fr !important; }
 }
