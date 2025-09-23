@@ -402,3 +402,17 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
   #contact .fields{ grid-template-columns: 1fr; }
   #contact .field:nth-child(3){ grid-column: auto; } /* message sur 1 colonne */
 }
+
+.site-search{
+  display:flex; gap:.5rem; align-items:center;
+  margin:.75rem 0; padding:0 var(--pad);
+}
+.site-search input[type="search"]{
+  flex:1; min-width:0;
+  padding:.65rem .8rem; border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.03); color:var(--text);
+}
+.site-search .button{ padding:0 .9rem; min-height:44px; }
+#site-search:focus-within{ box-shadow:var(--focus-ring); border-radius:12px; }
+#site-search{ scroll-margin-top: clamp(64px, 10vh, 120px); }

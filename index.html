@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <!--
-  Portfolio — version pédagogique et commentée
+  Portfolio 
   - Direction artistique : sombre, net, lisible, avec micro-accents bleus.
   - Hyperspace : seulement pour le pattern "spotlights" d’À propos (image + texte).
   - Accessibilité : skip-link, ancres propres, contrastes OK, aria là où pertinent.
@@ -69,6 +69,7 @@
           <li><a href="#projects">Projets</a></li>
           <li><a href="#education">Formations</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#site-search">Rechercher</a></li>
         </ul>
       </nav>
     </div>
@@ -77,8 +78,15 @@
   <!-- ============== WRAPPER PRINCIPAL ===================== -->
   <main id="wrapper">
 
+    <!-- ===== BARRE DE RECHERCHE (visible en mobile, accessible) ===== -->
+    <form id="site-search" class="site-search" role="search" action="/recherche" method="get">
+      <label for="q" class="sr-only">Rechercher</label>
+      <input id="q" name="q" type="search" placeholder="Rechercher…" inputmode="search" />
+      <button class="button" type="submit" aria-label="Lancer la recherche">Rechercher</button>
+    </form>
+
     <!-- =====================================================
-        1) HERO / INTRO — version optimisée avec CTA "Mon approche"
+        1) HERO / INTRO 
     ====================================================== -->
     <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero">
       <div class="inner hero-inner">
@@ -278,7 +286,7 @@
     </section>
 
     <!-- =====================================================
-        4) COMPÉTENCES — cartes (version pro & compacte)
+        4) COMPÉTENCES — cartes 
     ====================================================== -->
     <section id="skills" class="wrapper style2" aria-labelledby="skills-title">
       <div class="inner value-inner">
@@ -611,7 +619,7 @@
   </section>
   
   <!-- =====================================================
-      8) CONTACT — mailto avec fallback
+      8) CONTACT 
   ====================================================== -->
   <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
     <div class="inner">
