@@ -17,7 +17,7 @@
   <meta name="color-scheme" content="dark only" />
   <link rel="canonical" href="https://xsorouz.github.io/">
 
-  <!-- Favicon / PWA basics (facultatif mais propre) -->
+  <!-- Favicon / PWA basics -->
   <link rel="icon" href="images/favicon.ico" sizes="any">
   <link rel="icon" href="images/icon-192.png" type="image/png">
 
@@ -31,9 +31,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- ============== PERF HINTS ===================== -->
-  <!-- Préconnect CDN des icônes (évite un RTT) -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <!-- Précharge l’image LCP du hero : améliore le Largest Contentful Paint -->
   <link rel="preload" as="image" href="images/portrait.png" imagesrcset="images/portrait.png 1x" imagesizes="(max-width: 768px) 80vw, 420px">
 
   <!-- ============== STYLES ===================== -->
@@ -46,7 +44,6 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin
     referrerpolicy="no-referrer">
-
   <!-- ============== JSON-LD minimal ===================== -->
   <script type="application/ld+json">
   {
@@ -63,16 +60,53 @@
 
 <body class="is-preload">
   <!-- ============== SKIP LINK (A11Y) ===================== -->
-  <!-- Permet d’aller droit au contenu clavier/screen reader -->
   <a href="#intro" class="skip-link">Aller au contenu</a>
 
-  <!-- ============== SIDEBAR / NAV ===================== -->
-  <!-- Landmark nav + liste d’ancres internes. -->
+  <!-- ============== TOPBAR MOBILE (≤1080px) ===================== -->
+  <!-- S'affiche en mobile; la sidebar reste pour le desktop -->
+  <header class="topbar" aria-label="Barre mobile">
+    <div class="topbar__inner">
+      <a href="#intro" class="topbar__brand">
+        <span class="topbar__logo" aria-hidden="true">XR</span>
+        <span class="sr-only">Aller à l’accueil</span>
+      </a>
+
+      <button class="topbar__burger"
+              type="button"
+              aria-label="Ouvrir le menu"
+              aria-controls="nav-panel"
+              aria-expanded="false"
+              data-nav-toggle>
+        <span aria-hidden="true" class="burger-lines"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============== PANNEAU NAV MOBILE (overlay) ===================== -->
+  <nav id="nav-panel" class="nav-panel" aria-label="Menu principal" hidden>
+    <div class="nav-panel__inner">
+      <button class="nav-panel__close" type="button" aria-label="Fermer le menu" data-nav-close>
+        &times;
+      </button>
+
+      <ul class="nav-panel__list">
+        <li><a href="#intro" data-nav-link>Accueil</a></li>
+        <li><a href="#about" data-nav-link>À propos</a></li>
+        <li><a href="#value" data-nav-link>Valeur</a></li>
+        <li><a href="#skills" data-nav-link>Compétences</a></li>
+        <li><a href="#experience" data-nav-link>Expériences</a></li>
+        <li><a href="#projects" data-nav-link>Projets</a></li>
+        <li><a href="#education" data-nav-link>Formations</a></li>
+        <li><a href="#contact" data-nav-link>Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============== SIDEBAR / NAV (desktop) ===================== -->
   <aside id="sidebar" aria-label="Navigation latérale">
     <div class="inner">
       <nav aria-label="Navigation principale">
         <ul>
-          <!-- NB : ancres directes vers <section id="..."> -->
           <li><a href="#intro">Accueil</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#value">Valeur</a></li>
@@ -87,14 +121,10 @@
   </aside>
 
   <!-- ============== WRAPPER PRINCIPAL ===================== -->
-  <!-- Landmark main pour le contenu central -->
   <main id="wrapper">
 
     <!-- =====================================================
-        1) HERO / INTRO — section d’atterrissage
-        Tips :
-          - LCP : pas de lazy sur l’image principale.
-          - Boutons : focus visibles (gérés via CSS).
+        1) HERO / INTRO
     ====================================================== -->
     <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero">
       <div class="inner hero-inner">
@@ -138,7 +168,6 @@
         <!-- Colonne visuelle -->
         <div class="hero-col hero-col--visual" aria-hidden="true">
           <div class="portrait">
-            <!-- LCP : pas de loading="lazy" ici -->
             <img src="images/portrait.png" alt="Portrait de Xavier Rousseau" width="720" height="720" decoding="async">
           </div>
           <div class="hero-blob"></div>
@@ -148,14 +177,11 @@
     </section>
 
     <!-- =====================================================
-     2) À PROPOS — PATTERN “SPOTLIGHTS” (image à gauche)
-     Conseils :
-       - Image décorative => alt vide.
-       - L’image peut être lazy (hors LCP).
+     2) À PROPOS — SPOTLIGHTS (image à gauche)
     ====================================================== -->
     <section id="about" class="wrapper style2 spotlights about" aria-labelledby="about-title">
       <section>
-        <!-- Colonne IMAGE (image décorative → alt vide) -->
+        <!-- Colonne IMAGE (décorative) -->
         <a class="image" aria-hidden="true">
           <img src="images/about.png" alt="" loading="lazy" decoding="async"
                width="1200" height="1600"
@@ -174,7 +200,7 @@
             </p>
 
             <p>
-              <strong>Chez Financo</strong>, par exemple, mes analyses de connaissance client ont permis d’améliorer
+              <strong>Chez Arkéa Financements & Services</strong>, par exemple, mes analyses de connaissance client ont permis d’améliorer
               le ciblage marketing et de réduire les coûts de campagne grâce à des tests multi-canaux.
               J’ai conçu des indicateurs stratégiques, présentés en CODIR, et accompagné les équipes
               marketing dans la prise en main de Tableau pour qu’elles gagnent en autonomie.
@@ -205,7 +231,7 @@
     </section>
 
     <!-- =====================================================
-        3) VALEUR — cartes (impact métier, sans outils)
+        3) VALEUR — cartes
     ====================================================== -->
     <section id="value" class="wrapper style2" aria-labelledby="value-title">
       <div class="inner value-inner">
@@ -242,7 +268,7 @@
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
-            <h3>Modélisation pragmatique</h3>
+              <h3>Modélisation pragmatique</h3>
             </div>
             <ul>
               <li>Prévisions et scores orientés décision.</li>
@@ -391,7 +417,7 @@
     </section>
 
     <!-- =====================================================
-        5) EXPÉRIENCES — chronologie compacte & impact
+        5) EXPÉRIENCES
     ====================================================== -->
     <section id="experience" class="wrapper style3 fade-up" aria-labelledby="exp-title">
       <div class="inner">
@@ -624,10 +650,7 @@
     </section>
 
     <!-- =====================================================
-      8) CONTACT — mailto robuste (sans backend)
-      Notes :
-        - JS encode proprement les retours à la ligne.
-        - Fallback affiché si aucun client mail ne s’ouvre.
+      8) CONTACT — mailto (sans backend)
     ====================================================== -->
     <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
       <div class="inner">
@@ -695,10 +718,7 @@
                     msg
                   ]);
 
-                  // Navigation directe vers le mailto
                   window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-
-                  // Si rien ne se passe → afficher le fallback (client mail bloqué)
                   setTimeout(() => { fallback.style.display = 'block'; }, 2000);
                 });
               })();
@@ -743,8 +763,7 @@
     document.documentElement.style.scrollBehavior = 'smooth';
   </script>
 
-  <!-- Mise en évidence du lien actif dans la sidebar (IntersectionObserver)
-       Durci : n’observe que les liens internes (#id existant), ignore les externes. -->
+  <!-- Mise en évidence du lien actif dans la sidebar -->
   <script defer>
     (function () {
       const links = Array.from(document.querySelectorAll('#sidebar nav a'));
@@ -768,6 +787,43 @@
       };
       const io = new IntersectionObserver(onIntersect, { rootMargin: '-40% 0px -55% 0px', threshold: [0] });
       sections.forEach(s => io.observe(s));
+    })();
+  </script>
+
+  <!-- Burger mobile : ouverture/fermeture du panneau -->
+  <script>
+    (function () {
+      const btnToggle = document.querySelector('[data-nav-toggle]');
+      const panel = document.getElementById('nav-panel');
+      const btnClose = document.querySelector('[data-nav-close]');
+      const links = document.querySelectorAll('[data-nav-link]');
+
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+        document.body.classList.add('no-scroll');
+        btnToggle.setAttribute('aria-expanded', 'true');
+        setTimeout(() => { btnClose?.focus(); }, 0);
+      }
+
+      function closePanel() {
+        panel.classList.remove('is-open');
+        document.body.classList.remove('no-scroll');
+        btnToggle.setAttribute('aria-expanded', 'false');
+        setTimeout(() => { panel.hidden = true; }, 200);
+        btnToggle.focus();
+      }
+
+      btnToggle?.addEventListener('click', () => {
+        const expanded = btnToggle.getAttribute('aria-expanded') === 'true';
+        expanded ? closePanel() : openPanel();
+      });
+
+      btnClose?.addEventListener('click', closePanel);
+      links.forEach(a => a.addEventListener('click', closePanel));
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
+      });
     })();
   </script>
 </body>

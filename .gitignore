@@ -18,7 +18,6 @@ env/
 
 # 📁 Exports locaux (données générées)
 
-docs/
 old/
 logs/
 __pycache__/
