@@ -10,7 +10,7 @@
      6) Boutons (CTA)                16) Responsive container / layouts
      7) Spotlights — À propos        17) Menu mobile (topbar fluide, non-sticky)
      8) Cartes / Grilles             18) CTA du hero — compacts + .button--sm
-     9) Boxes (Expériences, etc.)
+     9) Boxes (Expériences, etc.)    19) Garde-fous anti “menu figé”
 ============================================================================ */
 
 /* ===== 0) RESET & BASE ===== */
@@ -73,7 +73,7 @@ a:hover{ text-decoration:underline; }
   --gap:clamp(16px,2.2vw,28px);
   --section-y:clamp(52px,8vw,120px);
 
-  /* Typo (clamps modérés : évite les titres géants) */
+  /* Typo (clamps modérés) */
   --fs-xs:.82rem;
   --fs-sm:.94rem;
   --fs-base:1rem;
@@ -249,7 +249,7 @@ p{ margin: 0 0 1.1em; }
 .value-header{ text-align:left; margin-bottom:1.3rem; }
 .value-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr)); /* minmax(0,1fr) = anti-overflow */
+  grid-template-columns:repeat(3, minmax(0,1fr));
   gap:var(--gap);
 }
 .card{
@@ -296,7 +296,7 @@ p{ margin: 0 0 1.1em; }
   .split.style1{ grid-template-columns: 1fr; }
 }
 
-/* Grille du formulaire (hyperspace-like, mais stable) */
+/* Grille du formulaire (stabilité mobile) */
 .fields{
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -323,7 +323,10 @@ input:focus, textarea:focus{ outline:0; box-shadow:var(--focus-ring); border-col
 .actions{ list-style:none; padding:0; margin:1rem 0 0; display:flex; gap:.6rem; flex-wrap:wrap; }
 
 /* ===== 11) TABLES ===== */
-table{ width:100%; border-collapse: collapse; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+table{
+  width:100%; border-collapse: collapse; background:var(--panel);
+  border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+}
 thead th{ text-align:left; font-weight:800; color:#e5edff; background:#0e1526; }
 th, td{ padding:.75rem 1rem; border-bottom:1px solid var(--border); }
 tbody tr:hover{ background:rgba(255,255,255,.03); }
@@ -331,7 +334,8 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
 /* ===== 12) FOOTER ===== */
 #footer{ border-top:1px solid var(--border); }
 #footer .menu{
-  list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; justify-content:center;
+  list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap;
+  gap:.8rem 1.2rem; justify-content:center;
 }
 #footer .menu a{ color:#a7c3ff; }
 
@@ -384,12 +388,15 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
     background: rgba(2,6,23,.55);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
+    /* Pas de position fixed/sticky → elle scrolle normalement */
+    position: static;
   }
   .topbar__inner{
     max-width: var(--container);
     margin: 0 auto;
     padding: .6rem var(--pad);
     display: flex; align-items: center; justify-content: space-between;
+    position: static;
   }
   .topbar__brand{
     display: inline-flex; align-items: center; gap: .6rem;
@@ -471,6 +478,7 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
   }
   .nav-panel__list a:focus-visible{ box-shadow: var(--focus-ring); outline: 0; }
 
+  /* Empêche le scroll de la page quand le panneau est ouvert (class ajoutée par JS) */
   body.no-scroll{ overflow: hidden; }
 }
 
@@ -485,4 +493,17 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
 @media (max-width:420px){
   .hero-actions .button{ min-height:44px; padding:0 .9rem; }
   .hero-actions{ gap:.5rem; }
+}
+
+/* ===== 19) Garde-fous anti “menu figé” (au cas où un style externe colle la nav) ===== */
+@media (max-width:1080px){
+  /* 1) S’assurer que la topbar n’est ni sticky ni fixed */
+  .topbar, .topbar__inner,
+  header, nav, .header, .site-header {
+    position: static !important;
+  }
+
+  /* 2) Le scroll se fait bien sur la page (pas un conteneur interne) */
+  html, body { height: auto; overflow: auto !important; }
+  #wrapper   { overflow: visible !important; }
 }
