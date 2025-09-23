@@ -404,53 +404,64 @@ tbody td{ padding:.75rem 1rem; border-top:1px solid var(--border); }
 }
 
 
-/* ===== MENU MOBILE : transformer la sidebar en topbar sticky ===== */
+/* ===== MENU MOBILE — topbar fluide, non-sticky ===== */
 @media (max-width: 1079px){
   #sidebar{
-    display:block;                 /* visible en mobile */
-    position:sticky;               /* reste en haut au scroll, prend sa place dans le flux */
-    top:0;
-    left:0;
+    display:block;               /* visible en mobile */
+    position:static;             /* <- n'est plus sticky */
     width:100%;
     height:auto;
     padding:10px var(--pad);
-    background:rgba(2,6,23,.6);    /* cohérent avec ta DA */
+    background:rgba(2,6,23,.6);
     border-right:none;
     border-bottom:1px solid var(--border);
     backdrop-filter:blur(8px);
-    z-index:60;
+    /* pas de top / z-index nécessaires puisqu'elle n'est plus “collante” */
   }
   #sidebar .inner{
     height:auto;
     align-items:center;
   }
   #sidebar nav ul{
-    display:flex;                  /* menu horizontal */
-    gap:.8rem;
+    display:flex;
+    flex-wrap:wrap;              /* <- les items retournent à la ligne si besoin */
+    gap:.5rem .6rem;             /* ligne / colonne */
     margin:0;
     padding:0;
     list-style:none;
-    overflow-x:auto;               /* scroll horizontal si trop de liens */
-    -webkit-overflow-scrolling:touch;
   }
   #sidebar nav li{
-    flex:0 0 auto;                 /* évite que les items se compressent */
+    flex:0 0 auto;
   }
   #sidebar nav a{
-    padding:.6rem .8rem;           /* “pills” touch-friendly */
+    display:block;
+    font-size:0.95rem;           /* un peu plus compact en mobile */
+    padding:.55rem .7rem;        /* “pills” tactiles */
     border-radius:10px;
     color:var(--text);
     opacity:.95;
-    white-space:nowrap;            /* pas de retour à la ligne */
+    white-space:nowrap;          /* évite les césures moches mot-à-mot */
     background:transparent;
+    border:1px solid transparent;
   }
   #sidebar nav a:hover{
     background:rgba(255,255,255,.06);
     opacity:1;
   }
-  /* On retire la pastille d'état prévue pour la version latérale */
+  /* pastille desktop désactivée en mobile */
   #sidebar nav a.active::after{
     display:none;
     content:none;
+  }
+}
+
+/* Ajustements supplémentaires pour très petits écrans */
+@media (max-width: 520px){
+  #sidebar nav a{
+    font-size:0.9rem;
+    padding:.5rem .6rem;
+  }
+  #sidebar nav ul{
+    gap:.45rem .5rem;
   }
 }
