@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <!--
-  Portfolio 
-  - Direction artistique : sombre, net, lisible, avec micro-accents bleus.
-  - Hyperspace : seulement pour le pattern "spotlights" d’À propos (image + texte).
-  - Accessibilité : skip-link, ancres propres, contrastes OK, aria là où pertinent.
+  Portfolio
+  - DA : sombre, net, lisible, micro-accents bleus (cohérent avec app.css).
+  - Hyperspace : uniquement pour le pattern "spotlights" (À propos).
+  - A11Y : skip-link, ancres propres, focus visibles (gérés côté CSS), aria ciblés.
 -->
 <html lang="fr">
 <head>
@@ -17,6 +17,10 @@
   <meta name="color-scheme" content="dark only" />
   <link rel="canonical" href="https://xsorouz.github.io/">
 
+  <!-- Favicon / PWA basics (facultatif mais propre) -->
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" href="images/icon-192.png" type="image/png">
+
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Xavier Rousseau — Data Analyst • Data Science & Engineering">
@@ -26,16 +30,22 @@
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- ============== PERF HINTS ===================== -->
+  <!-- Préconnect CDN des icônes (évite un RTT) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <!-- Précharge l’image LCP du hero : améliore le Largest Contentful Paint -->
+  <link rel="preload" as="image" href="images/portrait.png" imagesrcset="images/portrait.png 1x" imagesizes="(max-width: 768px) 80vw, 420px">
+
   <!-- ============== STYLES ===================== -->
   <link rel="stylesheet" href="assets/css/app.css">
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
   <!-- Icônes (Font Awesome) -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin
-        referrerpolicy="no-referrer">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin
+    referrerpolicy="no-referrer">
 
   <!-- ============== JSON-LD minimal ===================== -->
   <script type="application/ld+json">
@@ -53,14 +63,16 @@
 
 <body class="is-preload">
   <!-- ============== SKIP LINK (A11Y) ===================== -->
+  <!-- Permet d’aller droit au contenu clavier/screen reader -->
   <a href="#intro" class="skip-link">Aller au contenu</a>
 
   <!-- ============== SIDEBAR / NAV ===================== -->
-  <section id="sidebar" aria-label="Navigation latérale">
+  <!-- Landmark nav + liste d’ancres internes. -->
+  <aside id="sidebar" aria-label="Navigation latérale">
     <div class="inner">
-      <nav>
+      <nav aria-label="Navigation principale">
         <ul>
-          <!-- NB : nous ancrons directement sur les <section id="..."> -->
+          <!-- NB : ancres directes vers <section id="..."> -->
           <li><a href="#intro">Accueil</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#value">Valeur</a></li>
@@ -68,16 +80,21 @@
           <li><a href="#experience">Expériences</a></li>
           <li><a href="#projects">Projets</a></li>
           <li><a href="#education">Formations</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
-  </section>
+  </aside>
 
   <!-- ============== WRAPPER PRINCIPAL ===================== -->
+  <!-- Landmark main pour le contenu central -->
   <main id="wrapper">
 
     <!-- =====================================================
-        1) HERO / INTRO 
+        1) HERO / INTRO — section d’atterrissage
+        Tips :
+          - LCP : pas de lazy sur l’image principale.
+          - Boutons : focus visibles (gérés via CSS).
     ====================================================== -->
     <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero">
       <div class="inner hero-inner">
@@ -110,8 +127,8 @@
             <li><a href="#value" class="button outline cta-lg">Mon approche</a></li>
             <li>
               <a href="assets/docs/CV_Xavier_Rousseau.pdf"
-                target="_blank" rel="noopener"
-                class="button ghost cta-lg" download>
+                 target="_blank" rel="noopener"
+                 class="button ghost cta-lg" download>
                 Télécharger le CV (PDF)
               </a>
             </li>
@@ -121,7 +138,7 @@
         <!-- Colonne visuelle -->
         <div class="hero-col hero-col--visual" aria-hidden="true">
           <div class="portrait">
-            <!-- LCP : pas de lazy ici -->
+            <!-- LCP : pas de loading="lazy" ici -->
             <img src="images/portrait.png" alt="Portrait de Xavier Rousseau" width="720" height="720" decoding="async">
           </div>
           <div class="hero-blob"></div>
@@ -130,17 +147,19 @@
       </div>
     </section>
 
-
     <!-- =====================================================
      2) À PROPOS — PATTERN “SPOTLIGHTS” (image à gauche)
+     Conseils :
+       - Image décorative => alt vide.
+       - L’image peut être lazy (hors LCP).
     ====================================================== -->
     <section id="about" class="wrapper style2 spotlights about" aria-labelledby="about-title">
       <section>
         <!-- Colonne IMAGE (image décorative → alt vide) -->
         <a class="image" aria-hidden="true">
           <img src="images/about.png" alt="" loading="lazy" decoding="async"
-              width="1200" height="1600"
-              style="object-position:center 35%">
+               width="1200" height="1600"
+               style="object-position:center 35%">
         </a>
 
         <!-- Colonne TEXTE -->
@@ -223,7 +242,7 @@
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-brain"></i></span>
-              <h3>Modélisation pragmatique</h3>
+            <h3>Modélisation pragmatique</h3>
             </div>
             <ul>
               <li>Prévisions et scores orientés décision.</li>
@@ -277,7 +296,7 @@
     </section>
 
     <!-- =====================================================
-        4) COMPÉTENCES — cartes 
+        4) COMPÉTENCES — cartes
     ====================================================== -->
     <section id="skills" class="wrapper style2" aria-labelledby="skills-title">
       <div class="inner value-inner">
@@ -287,8 +306,7 @@
         </header>
 
         <div class="value-grid" role="list" aria-label="Compétences">
-
-          <!-- 1. Analyse & BI (priorité Data Analyst / BI) -->
+          <!-- 1. Analyse & BI -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-chart-bar"></i></span>
@@ -315,7 +333,7 @@
             </ul>
           </article>
 
-          <!-- 3. Pipelines & orchestration (ouverture Data Engineer) -->
+          <!-- 3. Pipelines & orchestration -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
@@ -343,7 +361,7 @@
             </ul>
           </article>
 
-          <!-- 5. Qualité, gouvernance & conformité -->
+          <!-- 5. Qualité & gouvernance -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
@@ -356,7 +374,7 @@
             </ul>
           </article>
 
-          <!-- 6. Observabilité & pilotage produit/tech -->
+          <!-- 6. Observabilité -->
           <article class="card" role="listitem">
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-wave-square"></i></span>
@@ -368,7 +386,6 @@
               <li>Alertes et supervision des traitements</li>
             </ul>
           </article>
-
         </div>
       </div>
     </section>
@@ -459,12 +476,11 @@
             <strong>Environnement :</strong> SAS, SQL, IBM DSV Toolkit, Jira, Confluence
           </p>
         </article>
-
       </div>
     </section>
 
     <!-- =====================================================
-     6) PROJETS
+     6) PROJETS — cartes
     ====================================================== -->
     <section id="projects" class="wrapper style2" aria-labelledby="projects-title">
       <div class="inner value-inner">
@@ -473,8 +489,7 @@
           <p class="lead">De l’exploration de données à l’ingénierie de bout en bout.</p>
         </header>
 
-        <div class="value-grid" role="list">
-
+        <div class="value-grid" role="list" aria-label="Projets">
           <!-- Datalyzer -->
           <article class="card" role="listitem">
             <div class="card-head">
@@ -526,7 +541,6 @@
               incluant collecte, traitement, orchestration, monitoring et visualisation.
             </p>
           </article>
-
         </div>
 
         <footer class="value-cta">
@@ -537,177 +551,179 @@
       </div>
     </section>
 
-  <!-- =====================================================
+    <!-- =====================================================
       7) FORMATION & CERTIFICATIONS
-  ====================================================== -->
-  <section id="education" class="wrapper style3 fade-up" aria-labelledby="edu-title">
-    <div class="inner">
-      <h2 id="edu-title">Formations & Certifications</h2>
+    ====================================================== -->
+    <section id="education" class="wrapper style3 fade-up" aria-labelledby="edu-title">
+      <div class="inner">
+        <h2 id="edu-title">Formations & Certifications</h2>
 
-      <!-- Data Engineer -->
-      <article class="box">
-        <header>
-          <h3>Data Engineer (RNCP niveau 7) — OpenClassrooms</h3>
-          <p><time datetime="2024">2024–2025</time> • Bac+5 (par projets)</p>
-        </header>
-        <p><em>Formation diplômante en 13 projets, couvrant l’ensemble du cycle de vie des données.</em></p>
-        <ul>
-          <li>Conception de pipelines et architectures data (Airflow, dbt, Kestra, Kafka, Spark).</li>
-          <li>Ingestion, stockage et orchestration (PostgreSQL, NoSQL, MinIO).</li>
-          <li>Qualité et monitoring (tests automatisés, traçabilité, Prometheus/Grafana).</li>
-          <li>Analyse prédictive et machine learning appliqué aux données métier.</li>
-          <li>Gestion de projets data de bout en bout (cadrage, planification, livraison).</li>
-        </ul>
-      </article>
-
-      <!-- Master -->
-      <article class="box">
-        <header>
-          <h3>Master 2 Statistiques &amp; Économétrie — Université Rennes 1</h3>
-          <p><time datetime="2009">2009–2011</time></p>
-        </header>
-        <p><em>Formation d’ingénieurs statisticiens et économètres, au service de l’aide à la décision.</em></p>
-        <ul>
-          <li>Économétrie avancée (régressions, panels, micro-économétrie).</li>
-          <li>Séries temporelles, actuariat, prévisions et analyse du risque.</li>
-          <li>Datamining, scoring, géomarketing et fiabilité des systèmes.</li>
-          <li>Stage long en entreprise pour appliquer les modèles prédictifs et les analyses quantitatives.</li>
-        </ul>
-      </article>
-
-      <!-- Licence -->
-      <article class="box">
-        <header>
-          <h3>Licence Mathématiques — Université Rennes 1</h3>
-          <p><time datetime="2008">2008–2009</time></p>
-        </header>
-        <p><em>Parcours en mathématiques fondamentales et appliquées.</em></p>
-        <ul>
-          <li>Probabilités, analyse, algèbre, optimisation.</li>
-          <li>Éléments de statistique et d’économétrie.</li>
-          <li>Modélisation mathématique et simulations numériques.</li>
-          <li>Compétences transverses : raisonnement rigoureux, démonstration, calcul scientifique.</li>
-        </ul>
-      </article>
-
-      <!-- Certifications -->
-      <article class="box">
-        <header>
-          <h3>Certifications professionnelles</h3>
-          <p><time datetime="2022">2022–2023</time></p>
-        </header>
-        <ul>
-          <li><strong>PL-300 : Microsoft Power BI Data Analyst</strong> — Udemy (2023).</li>
-          <li><strong>Tableau Certified Data Analyst (prep)</strong> — Udemy (2023).</li>
-          <li><strong>Tableau Data Analyst Certification Prep</strong> — Udemy (2023).</li>
-          <li><strong>Tableau 2022 A–Z : Hands-On Training</strong> — Udemy (2023).</li>
-          <li><strong>Dataiku Core Designer</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
-          <li><strong>Dataiku ML Practitioner</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
-          <li><strong>Les Data Sciences de A à Z</strong> — Udemy (2022).</li>
-        </ul>
-      </article>
-     </div>
-  </section>
-  
-  <!-- =====================================================
-      8) CONTACT 
-  ====================================================== -->
-  <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
-    <div class="inner">
-      <h2 id="contact-title">Contact</h2>
-      <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
-
-      <div class="split style1">
-        <!-- Formulaire -->
-        <section aria-label="Formulaire de contact">
-          <form id="contact-form" novalidate>
-            <div class="fields">
-              <div class="field half">
-                <label for="name">Nom</label>
-                <input type="text" id="name" autocomplete="name" />
-              </div>
-              <div class="field half">
-                <label for="email">Email</label>
-                <input type="email" id="email" autocomplete="email" required />
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea id="message" rows="5" required></textarea>
-              </div>
-            </div>
-
-            <ul class="actions">
-              <li><button type="button" class="button primary" id="send-btn">Envoyer</button></li>
-            </ul>
-
-            <!-- Fallback caché -->
-            <p id="fallback" class="muted" style="display:none; margin-top:1rem;">
-              📧 Impossible d’ouvrir automatiquement ton client mail ?  
-              Copie-colle cette adresse :  
-              <strong>rousseau.pro@outlook.fr</strong>
-            </p>
-          </form>
-
-          <script>
-            (function () {
-              const btn   = document.getElementById('send-btn');
-              const nameI = document.getElementById('name');
-              const mailI = document.getElementById('email');
-              const msgI  = document.getElementById('message');
-              const fallback = document.getElementById('fallback');
-
-              function encodeBody(lines) {
-                return lines.map(encodeURIComponent).join('%0D%0A');
-              }
-
-              btn.addEventListener('click', function () {
-                const name = (nameI.value || '').trim();
-                const from = (mailI.value || '').trim();
-                const msg  = (msgI.value  || '').trim();
-
-                if (!from) { alert('Merci d’indiquer votre email.'); mailI.focus(); return; }
-                if (!msg)  { alert('Merci d’écrire un message.');    msgI.focus();  return; }
-
-                const to = 'rousseau.pro@outlook.fr';
-                const subject = encodeURIComponent('Contact depuis xavrousseau.github.io');
-                const body = encodeBody([
-                  `Nom : ${name}`,
-                  `Email : ${from}`,
-                  '',
-                  'Message :',
-                  msg
-                ]);
-
-                // Navigation directe vers le mailto
-                window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-
-                // Si rien ne se passe → afficher le fallback
-                setTimeout(() => { fallback.style.display = 'block'; }, 2000);
-              });
-            })();
-          </script>
-        </section>
-
-        <!-- Coordonnées -->
-        <section aria-label="Coordonnées et réseaux">
-          <ul class="contact">
-            <li><h3>Localisation</h3><span>Landerneau (France)</span></li>
-            <li><h3>Email</h3><a href="mailto:rousseau.pro@outlook.fr">rousseau.pro@outlook.fr</a></li>
-            <li><h3>Téléphone</h3><a href="tel:+33695290505">+33&nbsp;6&nbsp;95&nbsp;29&nbsp;05&nbsp;05</a></li>
-            <li>
-              <h3>Réseaux</h3>
-              <ul class="icons">
-                <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
-                <li><a href="https://github.com/xavrousseau" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
-              </ul>
-            </li>
-            <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener">Télécharger le CV</a></li>
+        <!-- Data Engineer -->
+        <article class="box">
+          <header>
+            <h3>Data Engineer (RNCP niveau 7) — OpenClassrooms</h3>
+            <p><time datetime="2024">2024–2025</time> • Bac+5 (par projets)</p>
+          </header>
+          <p><em>Formation diplômante en 13 projets, couvrant l’ensemble du cycle de vie des données.</em></p>
+          <ul>
+            <li>Conception de pipelines et architectures data (Airflow, dbt, Kestra, Kafka, Spark).</li>
+            <li>Ingestion, stockage et orchestration (PostgreSQL, NoSQL, MinIO).</li>
+            <li>Qualité et monitoring (tests automatisés, traçabilité, Prometheus/Grafana).</li>
+            <li>Analyse prédictive et machine learning appliqué aux données métier.</li>
+            <li>Gestion de projets data de bout en bout (cadrage, planification, livraison).</li>
           </ul>
-        </section>
-      </div>
-    </div>
-  </section>
+        </article>
 
+        <!-- Master -->
+        <article class="box">
+          <header>
+            <h3>Master 2 Statistiques &amp; Économétrie — Université Rennes 1</h3>
+            <p><time datetime="2009">2009–2011</time></p>
+          </header>
+          <p><em>Formation d’ingénieurs statisticiens et économètres, au service de l’aide à la décision.</em></p>
+          <ul>
+            <li>Économétrie avancée (régressions, panels, micro-économétrie).</li>
+            <li>Séries temporelles, actuariat, prévisions et analyse du risque.</li>
+            <li>Datamining, scoring, géomarketing et fiabilité des systèmes.</li>
+            <li>Stage long en entreprise pour appliquer les modèles prédictifs et les analyses quantitatives.</li>
+          </ul>
+        </article>
+
+        <!-- Licence -->
+        <article class="box">
+          <header>
+            <h3>Licence Mathématiques — Université Rennes 1</h3>
+            <p><time datetime="2008">2008–2009</time></p>
+          </header>
+          <p><em>Parcours en mathématiques fondamentales et appliquées.</em></p>
+          <ul>
+            <li>Probabilités, analyse, algèbre, optimisation.</li>
+            <li>Éléments de statistique et d’économétrie.</li>
+            <li>Modélisation mathématique et simulations numériques.</li>
+            <li>Compétences transverses : raisonnement rigoureux, démonstration, calcul scientifique.</li>
+          </ul>
+        </article>
+
+        <!-- Certifications -->
+        <article class="box">
+          <header>
+            <h3>Certifications professionnelles</h3>
+            <p><time datetime="2022">2022–2023</time></p>
+          </header>
+          <ul>
+            <li><strong>PL-300 : Microsoft Power BI Data Analyst</strong> — Udemy (2023).</li>
+            <li><strong>Tableau Certified Data Analyst (prep)</strong> — Udemy (2023).</li>
+            <li><strong>Tableau Data Analyst Certification Prep</strong> — Udemy (2023).</li>
+            <li><strong>Tableau 2022 A–Z : Hands-On Training</strong> — Udemy (2023).</li>
+            <li><strong>Dataiku Core Designer</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
+            <li><strong>Dataiku ML Practitioner</strong> — Dataiku (2022, valide jusqu’en 2024).</li>
+            <li><strong>Les Data Sciences de A à Z</strong> — Udemy (2022).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+      8) CONTACT — mailto robuste (sans backend)
+      Notes :
+        - JS encode proprement les retours à la ligne.
+        - Fallback affiché si aucun client mail ne s’ouvre.
+    ====================================================== -->
+    <section id="contact" class="wrapper style1 fade-up" aria-labelledby="contact-title">
+      <div class="inner">
+        <h2 id="contact-title">Contact</h2>
+        <p class="muted">CDI à Brest ou en remote : je transforme les données en indicateurs clairs, modèles utiles et pipelines robustes.</p>
+
+        <div class="split style1">
+          <!-- Formulaire -->
+          <section aria-label="Formulaire de contact">
+            <form id="contact-form" novalidate>
+              <div class="fields">
+                <div class="field half">
+                  <label for="name">Nom</label>
+                  <input type="text" id="name" autocomplete="name" />
+                </div>
+                <div class="field half">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" autocomplete="email" required />
+                </div>
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" rows="5" required></textarea>
+                </div>
+              </div>
+
+              <ul class="actions">
+                <li><button type="button" class="button primary button--sm" id="send-btn">Envoyer</button></li>
+              </ul>
+
+              <!-- Fallback caché -->
+              <p id="fallback" class="muted" style="display:none; margin-top:1rem;">
+                📧 Impossible d’ouvrir automatiquement ton client mail ?<br>
+                Copie-colle cette adresse : <strong>rousseau.pro@outlook.fr</strong>
+              </p>
+            </form>
+
+            <!-- Script mailto (auto-encodage + fallback) -->
+            <script>
+              (function () {
+                const btn   = document.getElementById('send-btn');
+                const nameI = document.getElementById('name');
+                const mailI = document.getElementById('email');
+                const msgI  = document.getElementById('message');
+                const fallback = document.getElementById('fallback');
+
+                function encodeBody(lines) {
+                  return lines.map(encodeURIComponent).join('%0D%0A');
+                }
+
+                btn.addEventListener('click', function () {
+                  const name = (nameI.value || '').trim();
+                  const from = (mailI.value || '').trim();
+                  const msg  = (msgI.value  || '').trim();
+
+                  if (!from) { alert('Merci d’indiquer votre email.'); mailI.focus(); return; }
+                  if (!msg)  { alert('Merci d’écrire un message.');    msgI.focus();  return; }
+
+                  const to = 'rousseau.pro@outlook.fr';
+                  const subject = encodeURIComponent('Contact depuis xavrousseau.github.io');
+                  const body = encodeBody([
+                    `Nom : ${name}`,
+                    `Email : ${from}`,
+                    '',
+                    'Message :',
+                    msg
+                  ]);
+
+                  // Navigation directe vers le mailto
+                  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+                  // Si rien ne se passe → afficher le fallback (client mail bloqué)
+                  setTimeout(() => { fallback.style.display = 'block'; }, 2000);
+                });
+              })();
+            </script>
+          </section>
+
+          <!-- Coordonnées -->
+          <section aria-label="Coordonnées et réseaux">
+            <ul class="contact">
+              <li><h3>Localisation</h3><span>Landerneau (France)</span></li>
+              <li><h3>Email</h3><a href="mailto:rousseau.pro@outlook.fr">rousseau.pro@outlook.fr</a></li>
+              <li><h3>Téléphone</h3><a href="tel:+33695290505">+33&nbsp;6&nbsp;95&nbsp;29&nbsp;05&nbsp;05</a></li>
+              <li>
+                <h3>Réseaux</h3>
+                <ul class="icons">
+                  <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+                  <li><a href="https://github.com/xavrousseau" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
+                </ul>
+              </li>
+              <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener">Télécharger le CV</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -722,25 +738,29 @@
   </footer>
 
   <!-- ============== SCRIPTS ===================== -->
+  <!-- Défilement doux côté CSS (fallback JS inutile si tu préfères) -->
   <script defer>
-    // Sur-marge d’ancrage pour titres/sections : évite que le titre se cache sous la topbar du navigateur.
     document.documentElement.style.scrollBehavior = 'smooth';
   </script>
+
+  <!-- Mise en évidence du lien actif dans la sidebar (IntersectionObserver)
+       Durci : n’observe que les liens internes (#id existant), ignore les externes. -->
   <script defer>
-    // Mise en évidence du lien actif dans la sidebar (IntersectionObserver)
     (function () {
       const links = Array.from(document.querySelectorAll('#sidebar nav a'));
-      const map = new Map(links.map(a => [a.getAttribute('href'), a]));
-      const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const internal = links.filter(a => a.hash && a.hash.startsWith('#'));
+      const map = new Map(internal.map(a => [a.hash, a]));
+      const sections = internal
+        .map(a => document.getElementById(a.hash.slice(1)))
+        .filter(Boolean);
       if (!('IntersectionObserver' in window) || sections.length === 0) return;
 
       const onIntersect = entries => {
         entries.forEach(entry => {
-          const id = '#' + entry.target.id;
-          const link = map.get(id);
+          const link = map.get('#' + entry.target.id);
           if (!link) return;
           if (entry.isIntersecting) {
-            links.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
+            internal.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
             link.classList.add('active');
             link.setAttribute('aria-current','true');
           }
