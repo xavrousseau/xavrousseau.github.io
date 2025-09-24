@@ -116,76 +116,95 @@ p{ margin:0 0 1.1em; }
 }
 .wrapper.style1-alt{ background:#0b1220; }
 
-
 /* ===== NAV — mobile (par défaut) : menu discret en chips ================== */
-#sidebar{
-  position: static;               /* pas de sticky/fixed en mobile */
-  left:auto; top:auto;
-  width:100%; height:auto;
-  padding:8px var(--pad) 0;       /* compact */
-  background: transparent;        /* plus de bande sombre */
+#sidebar {
+  position: static;               /* pas de sticky/fixed en mobile → défile avec la page */
+  left: auto; top: auto;
+  width: 100%; height: auto;
+  padding: 8px var(--pad) 0;      /* compact */
+  background: transparent;        /* pas de bande sombre */
   border: 0;                      /* pas de bordure */
   backdrop-filter: none;
   z-index: 5;
 }
-#wrapper, #footer{ margin-left:0; }
+#wrapper, #footer { margin-left: 0; }
 
-#sidebar .inner{ height:auto; display:block; min-width:0; }
+#sidebar .inner { height: auto; display: block; min-width: 0; }
+#sidebar nav { max-width: 100%; }  /* clé : ne dépasse jamais l’écran */
 
 /* Liste horizontale défilable (1 seule ligne) */
-#sidebar nav ul{
-  display:flex; gap:.5rem; margin:0; padding:0; list-style:none;
-  flex-wrap: nowrap;              /* force 1 ligne */
-  overflow-x: auto;               /* défilement horizontal si besoin */
+#sidebar nav ul {
+  display: flex; gap: .5rem;
+  margin: 0; padding: 0; list-style: none;
+  flex-wrap: nowrap;               /* force 1 ligne */
+  overflow-x: auto;                /* défilement horizontal si besoin */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
-#sidebar nav ul::-webkit-scrollbar{ display:none; }
+#sidebar nav ul::-webkit-scrollbar { display: none; }
 
-#sidebar nav li{ flex:0 0 auto; }
+#sidebar nav li { flex: 0 0 auto; }
 
-#sidebar nav a{
-  display:block; white-space:nowrap;
-  font-size:.95rem; line-height:1;
-  padding:.45rem .6rem;           /* plus petit que desktop */
-  border-radius:999px;            /* pastilles/chips */
+#sidebar nav a {
+  display: block; white-space: nowrap;
+  font-size: .95rem; line-height: 1;
+  padding: .45rem .6rem;           /* plus petit que desktop */
+  border-radius: 999px;            /* pastilles/chips */
   background: rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
   color: var(--text);
-  opacity:.95;
+  opacity: .95;
 }
-#sidebar nav a:hover{ opacity:1; }
+#sidebar nav a:hover { opacity: 1; }
 
 /* État actif sur mobile : contraste léger (sans gros halo) */
-#sidebar nav a.active{
+#sidebar nav a.active {
   background: rgba(59,130,246,.18);
   border-color: rgba(59,130,246,.35);
 }
 /* Cache la pastille de l'état actif (réservée au desktop) */
-#sidebar nav a.active::after{ display:none; }
+#sidebar nav a.active::after { display: none; }
 
-/* ===== NAV — desktop (≥1080px) inchangé : barre fixe à gauche ============ */
-@media (min-width:1080px){
-  #sidebar{
-    position:fixed; left:0; top:0; width:280px; height:100vh;
-    padding:22px 18px;
-    background:rgba(2,6,23,.4);
-    border-right:1px solid var(--border);
-    z-index:50;
+/* Ultra-petits écrans ≤400px : réductions encore plus fortes */
+@media (max-width:400px) {
+  #sidebar nav a {
+    font-size: .88rem;
+    padding: .35rem .5rem;
   }
-  #sidebar .inner{ height:100%; display:flex; align-items:center; }
-  #sidebar nav ul{ display:block; overflow:visible; }
-  #sidebar nav a{
-    padding:.55rem 0; border-radius:10px; background:transparent; border:1px solid transparent;
+  #sidebar nav ul {
+    gap: .35rem;
   }
-  #sidebar nav a.active::after{
-    display:block; content:""; position:absolute; right:-12px; top:50%;
-    transform:translateY(-50%); width:6px; height:6px; border-radius:999px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-2));
-    box-shadow:0 0 0 6px rgba(59,130,246,.18);
-  }
-  #wrapper, #footer{ margin-left:280px; }
 }
+
+/* ===== NAV — desktop (≥1080px) : sidebar fixe à gauche ===================== */
+@media (min-width:1080px) {
+  #sidebar {
+    position: fixed; left: 0; top: 0; width: 280px; height: 100vh;
+    padding: 22px 18px;
+    background: rgba(2,6,23,.4);
+    border-right: 1px solid var(--border);
+    z-index: 50;
+  }
+  #sidebar .inner { height: 100%; display: flex; align-items: center; }
+  #sidebar nav ul { display: block; overflow: visible; }
+  #sidebar nav a {
+    padding: .55rem 0;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    position: relative; /* pour ancrer la pastille active */
+  }
+  #sidebar nav a.active::after {
+    display: block; content: "";
+    position: absolute; right: -12px; top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 999px;
+    background: linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow: 0 0 0 6px rgba(59,130,246,.18);
+  }
+  #wrapper, #footer { margin-left: 280px; }
+}
+
 
 
 /* ===== 5) HERO ============================================================= */
