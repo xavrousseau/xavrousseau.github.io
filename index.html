@@ -61,47 +61,7 @@
 <body>
   <!-- ============== SKIP LINK (A11Y) ===================== -->
   <a href="#intro" class="skip-link">Aller au contenu</a>
-
-  <!-- ============== TOPBAR MOBILE (≤1080px) ===================== -->
-  <!-- S'affiche en mobile; la sidebar reste pour le desktop -->
-  <header class="topbar" aria-label="Barre mobile">
-    <div class="topbar__inner">
-      <a href="#intro" class="topbar__brand">
-        <span class="topbar__logo" aria-hidden="true">XR</span>
-        <span class="sr-only">Aller à l’accueil</span>
-      </a>
-
-      <button class="topbar__burger"
-              type="button"
-              aria-label="Ouvrir le menu"
-              aria-controls="nav-panel"
-              aria-expanded="false"
-              data-nav-toggle>
-        <span aria-hidden="true" class="burger-lines"></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ============== PANNEAU NAV MOBILE (overlay) ===================== -->
-  <nav id="nav-panel" class="nav-panel" aria-label="Menu principal" hidden>
-    <div class="nav-panel__inner">
-      <button class="nav-panel__close" type="button" aria-label="Fermer le menu" data-nav-close>
-        &times;
-      </button>
-
-      <ul class="nav-panel__list">
-        <li><a href="#intro" data-nav-link>Accueil</a></li>
-        <li><a href="#about" data-nav-link>À propos</a></li>
-        <li><a href="#value" data-nav-link>Valeur</a></li>
-        <li><a href="#skills" data-nav-link>Compétences</a></li>
-        <li><a href="#experience" data-nav-link>Expériences</a></li>
-        <li><a href="#projects" data-nav-link>Projets</a></li>
-        <li><a href="#education" data-nav-link>Formations</a></li>
-        <li><a href="#contact" data-nav-link>Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
+ 
   <!-- ============== SIDEBAR / NAV (desktop) ===================== -->
   <aside id="sidebar" aria-label="Navigation latérale">
     <div class="inner">
@@ -787,43 +747,6 @@
       };
       const io = new IntersectionObserver(onIntersect, { rootMargin: '-40% 0px -55% 0px', threshold: [0] });
       sections.forEach(s => io.observe(s));
-    })();
-  </script>
-
-  <!-- Burger mobile : ouverture/fermeture du panneau -->
-  <script>
-    (function () {
-      const btnToggle = document.querySelector('[data-nav-toggle]');
-      const panel = document.getElementById('nav-panel');
-      const btnClose = document.querySelector('[data-nav-close]');
-      const links = document.querySelectorAll('[data-nav-link]');
-
-      function openPanel() {
-        panel.hidden = false;
-        panel.classList.add('is-open');
-        document.body.classList.add('no-scroll');
-        btnToggle.setAttribute('aria-expanded', 'true');
-        setTimeout(() => { btnClose?.focus(); }, 0);
-      }
-
-      function closePanel() {
-        panel.classList.remove('is-open');
-        document.body.classList.remove('no-scroll');
-        btnToggle.setAttribute('aria-expanded', 'false');
-        setTimeout(() => { panel.hidden = true; }, 200);
-        btnToggle.focus();
-      }
-
-      btnToggle?.addEventListener('click', () => {
-        const expanded = btnToggle.getAttribute('aria-expanded') === 'true';
-        expanded ? closePanel() : openPanel();
-      });
-
-      btnClose?.addEventListener('click', closePanel);
-      links.forEach(a => a.addEventListener('click', closePanel));
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && panel.classList.contains('is-open')) closePanel();
-      });
     })();
   </script>
 
