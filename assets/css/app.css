@@ -85,12 +85,12 @@ p{ margin:0 0 1.1em; }
 .wrapper.style2{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 40%), var(--bg); }
 .wrapper.style3{ background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(37,99,235,0) 45%); }
 .wrapper.style1-alt{ background:#0b1220; }
-
 /* ===== 4) NAVIGATION ======================================================= */
 /* --- Mobile (défaut) : nav horizontale en chips, qui défile avec la page --- */
 #sidebar {
-  position: static;   /* pas de fixed → suit le scroll */
-  width: 100%; height: auto;
+  position: static;                 /* pas de fixed → suit le scroll */
+  width: 100%;
+  height: auto;
   padding: 8px var(--pad) 0;
   background: transparent;
   border: 0;
@@ -102,76 +102,89 @@ p{ margin:0 0 1.1em; }
 #sidebar nav { max-width: 100%; }
 
 #sidebar nav ul {
-  display: flex; gap: .5rem;
-  margin: 0; padding: 0; list-style: none;
+  display: flex;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: auto;                 /* défilement horizontal si besoin */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-}
-#sidebar nav ul::-webkit-scrollbar{ display:none; }
 
-#sidebar nav li{ flex:0 0 auto; }
+  /* Accrochage doux des éléments en défilement horizontal */
+  scroll-snap-type: x mandatory;
+}
+#sidebar nav ul::-webkit-scrollbar { display: none; }
+
+#sidebar nav li {
+  flex: 0 0 auto;
+  scroll-snap-align: start;         /* chaque item s’aligne au bord gauche */
+}
 
 #sidebar nav a {
-  display:block; white-space:nowrap;
-  font-size:.95rem; line-height:1;
-  padding:.45rem .6rem;
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
-  color:var(--text); opacity:.95;
+  display: block;
+  white-space: nowrap;
+  font-size: .95rem;
+  line-height: 1;
+  padding: .45rem .6rem;            /* plus petit que desktop */
+  border-radius: 999px;             /* pastilles/chips */
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--text);
+  opacity: .95;
 }
-#sidebar nav a:hover{ opacity:1; }
+#sidebar nav a:hover { opacity: 1; }
 
 #sidebar nav a.active {
-  background:rgba(59,130,246,.18);
-  border-color:rgba(59,130,246,.35);
+  background: rgba(59,130,246,.18);
+  border-color: rgba(59,130,246,.35);
 }
-#sidebar nav a.active::after{ display:none; }
+#sidebar nav a.active::after { display: none; } /* pastille desktop uniquement */
 
 /* Ultra-petits écrans ≤400px : encore plus compacts */
 @media (max-width:400px) {
-  #sidebar nav a { font-size:.88rem; padding:.35rem .5rem; }
-  #sidebar nav ul { gap:.35rem; }
+  #sidebar nav a { font-size: .88rem; padding: .35rem .5rem; }
+  #sidebar nav ul { gap: .35rem; }
 }
 
-/* --- Desktop (≥1080px) : sidebar fixe à gauche --- */
+/* --- Desktop (≥1080px) : sidebar fixe à gauche ---------------------------- */
 @media (min-width:1080px) {
   #sidebar {
-    position:fixed; left:0; top:0;
-    width:280px; height:100vh;
-    padding:22px 18px;
-    background:rgba(2,6,23,.4);
-    border-right:1px solid var(--border);
-    z-index:50;
+    position: fixed;
+    left: 0; top: 0;
+    width: 280px; height: 100vh;
+    padding: 22px 18px;
+    background: rgba(2,6,23,.4);
+    border-right: 1px solid var(--border);
+    z-index: 50;
   }
-  #sidebar .inner{ height:100%; display:flex; align-items:center; }
-  #sidebar nav ul{ display:block; }
+  #sidebar .inner { height: 100%; display: flex; align-items: center; }
+  #sidebar nav ul { display: block; overflow: visible; }
   #sidebar nav a {
-    padding:.55rem 0;
-    border-radius:10px;
-    background:transparent;
-    border:1px solid transparent;
-    position: relative;
+    padding: .55rem 0;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    position: relative;            /* ancre la pastille active */
   }
   #sidebar nav a.active::after {
-    display:block; content:"";
-    position:absolute; right:-12px; top:50%;
-    transform:translateY(-50%);
-    width:6px; height:6px; border-radius:999px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-2));
-    box-shadow:0 0 0 6px rgba(59,130,246,.18);
+    display: block; content: "";
+    position: absolute; right: -12px; top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px; border-radius: 999px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    box-shadow: 0 0 0 6px rgba(59,130,246,.18);
   }
-  #wrapper, #footer{ margin-left:280px; }
+  #wrapper, #footer { margin-left: 280px; }
 }
 
-/* --- Overrides pour appareils tactiles : jamais fixed --- */
+/* --- Overrides appareils tactiles : jamais fixed, même en paysage ---------- */
 @media (hover: none) and (pointer: coarse) {
-  #sidebar { position: static !important; width:100% !important; height:auto !important; }
-  #wrapper, #footer { margin-left:0 !important; }
+  #sidebar { position: static !important; width: 100% !important; height: auto !important; }
+  #wrapper, #footer { margin-left: 0 !important; }
 }
-
+ 
 /* ===== 5) HERO ============================================================= */
 /* Section d’atterrissage ; grille 2 colonnes → 1 colonne <1100px */
 .hero{ position:relative; }
