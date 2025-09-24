@@ -116,62 +116,77 @@ p{ margin:0 0 1.1em; }
 }
 .wrapper.style1-alt{ background:#0b1220; }
 
-/* ===== 4) NAV — mobile-first (défile), desktop fixe ======================== */
-/* MOBILE (défaut) : #sidebar sert de topbar qui SCROLLE avec la page. */
+
+/* ===== NAV — mobile (par défaut) : menu discret en chips ================== */
 #sidebar{
-  position: static;           /* clé : pas de fixed/sticky en mobile */
+  position: static;               /* pas de sticky/fixed en mobile */
   left:auto; top:auto;
   width:100%; height:auto;
-  display:block;
-
-  padding:10px var(--pad);
-  background:rgba(2,6,23,.6); /* légère transparence + blur */
-  border-right:0; border-bottom:1px solid var(--border);
-  backdrop-filter:blur(8px);
-  z-index:5;                  /* au-dessus du contenu immédiat */
+  padding:8px var(--pad) 0;       /* compact */
+  background: transparent;        /* plus de bande sombre */
+  border: 0;                      /* pas de bordure */
+  backdrop-filter: none;
+  z-index: 5;
 }
-#wrapper, #footer{ margin-left:0; } /* pas d’espace réservé en mobile */
+#wrapper, #footer{ margin-left:0; }
 
-#sidebar .inner{ height:auto; display:flex; align-items:center; min-width:0; }
+#sidebar .inner{ height:auto; display:block; min-width:0; }
+
+/* Liste horizontale défilable (1 seule ligne) */
 #sidebar nav ul{
-  display:flex; flex-wrap:wrap; gap:.5rem .6rem;
-  margin:0; padding:0; list-style:none;
+  display:flex; gap:.5rem; margin:0; padding:0; list-style:none;
+  flex-wrap: nowrap;              /* force 1 ligne */
+  overflow-x: auto;               /* défilement horizontal si besoin */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-#sidebar nav li{ flex:0 0 auto; }
-#sidebar nav a{
-  display:block; font-size:.95rem; padding:.55rem .7rem; border-radius:10px;
-  color:var(--text); opacity:.95; white-space:nowrap;
-  background:transparent; border:1px solid transparent;
-}
-#sidebar nav a:hover{ background:rgba(255,255,255,.06); opacity:1; }
-/* Pastille d’item actif : visible seulement en desktop (cachée ici) */
-#sidebar nav a.active::after{ display:none; content:none; }
+#sidebar nav ul::-webkit-scrollbar{ display:none; }
 
-/* DESKTOP (≥1080px) : sidebar FIXE à gauche + espace réservé au contenu. */
+#sidebar nav li{ flex:0 0 auto; }
+
+#sidebar nav a{
+  display:block; white-space:nowrap;
+  font-size:.95rem; line-height:1;
+  padding:.45rem .6rem;           /* plus petit que desktop */
+  border-radius:999px;            /* pastilles/chips */
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color: var(--text);
+  opacity:.95;
+}
+#sidebar nav a:hover{ opacity:1; }
+
+/* État actif sur mobile : contraste léger (sans gros halo) */
+#sidebar nav a.active{
+  background: rgba(59,130,246,.18);
+  border-color: rgba(59,130,246,.35);
+}
+/* Cache la pastille de l'état actif (réservée au desktop) */
+#sidebar nav a.active::after{ display:none; }
+
+/* ===== NAV — desktop (≥1080px) inchangé : barre fixe à gauche ============ */
 @media (min-width:1080px){
   #sidebar{
     position:fixed; left:0; top:0; width:280px; height:100vh;
     padding:22px 18px;
     background:rgba(2,6,23,.4);
-    border-right:1px solid var(--border); border-bottom:0;
+    border-right:1px solid var(--border);
     z-index:50;
   }
-  #sidebar .inner{ height:100%; align-items:center; }
-  #sidebar nav ul{ display:block; gap:0; }
-  #sidebar nav a{ padding:.55rem 0; white-space:normal; position:relative; }
-
-  /* Indicateur de l’item actif (pastille avec halo) */
+  #sidebar .inner{ height:100%; display:flex; align-items:center; }
+  #sidebar nav ul{ display:block; overflow:visible; }
+  #sidebar nav a{
+    padding:.55rem 0; border-radius:10px; background:transparent; border:1px solid transparent;
+  }
   #sidebar nav a.active::after{
-    display:block; content:"";
-    position:absolute; right:-12px; top:50%; transform:translateY(-50%);
-    width:6px; height:6px; border-radius:999px;
+    display:block; content:""; position:absolute; right:-12px; top:50%;
+    transform:translateY(-50%); width:6px; height:6px; border-radius:999px;
     background:linear-gradient(135deg,var(--brand),var(--brand-2));
     box-shadow:0 0 0 6px rgba(59,130,246,.18);
   }
-
-  /* Décale contenu et footer pour laisser la place à la sidebar fixe */
   #wrapper, #footer{ margin-left:280px; }
 }
+
 
 /* ===== 5) HERO ============================================================= */
 /* Section d’atterrissage ; grille 2 colonnes → 1 colonne <1100px */
@@ -426,29 +441,3 @@ tbody tr:hover{ background:rgba(255,255,255,.03); }
 
 /* Micro-ajustement CTA très petits écrans */
 @media (max-width:420px){ .cta-lg{ font-size:.95rem; } }
-
-/* ===== 16) HOTFIX NAV MOBILE — défiler, jamais collée ===================== */
-@media (max-width:1079px){
-  /* Sidebar : dans le flux, jamais fixed/sticky */
-  #sidebar{
-    position: static !important;
-    top: auto !important; bottom: auto !important;
-    left: auto !important; right: auto !important;
-    width: 100% !important; height: auto !important;
-    margin: 0 !important;
-    z-index: 5 !important;
-  }
-
-  /* Aucune marge latérale réservée en mobile */
-  #wrapper, #footer{ margin-left: 0 !important; }
-
-  /* Ceinture + bretelles : neutralise tout header/nav potentiellement fixed */
-  header, nav, .topbar, .site-header, .page-header{
-    position: static !important;
-    top: auto !important; bottom: auto !important;
-  }
-
-  /* Le scroll doit se faire sur la page, pas dans un conteneur interne */
-  html, body{ height: auto; overflow: auto !important; }
-  #wrapper{ position: static !important; overflow: visible !important; }
-}
