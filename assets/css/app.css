@@ -1,78 +1,61 @@
 /* ============================================================================
    app.css — Thème sombre, net, lisible (Hyperspace-like)
    Mobile-first : #sidebar défile en mobile, devient fixe seulement ≥1080px
-   Objectif de ce fichier : style clair, accessible et robuste sans framework.
+   Objectif : style clair, accessible et robuste sans framework.
 ============================================================================ */
 
 /* ===== 0) RESET & BASE ===================================================== */
-/* Base saine : box-sizing hérité, marges annulées et rendu texte soigné. */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; } /* évite le zoom iOS imprévisible */
+html { -webkit-text-size-adjust: 100%; } /* évite zoom iOS imprévisible */
 
-body{
-  /* Taille de police de base + paliers fluides plus bas */
-  font-size: 15px; /* ~15px desktop → ~13px mobile via paliers */
-  /* Pile système rapide (pas de FOUT) */
+body {
+  font-size: 15px; /* base ~15px desktop → ~13px mobile via paliers */
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
                "Segoe UI Emoji", "Segoe UI Symbol";
-  /* Thème sombre */
   background: #0f172a;
   color: rgba(241,245,249,.92);
   line-height: 1.6;
-
-  /* Lisibilité */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Échelle typographique par paliers doux (évite les à-coups) */
+/* Échelle typographique fluide */
 @media (max-width:1680px){ body{ font-size:14.5px; } }
 @media (max-width:1280px){ body{ font-size:14px; } }
 @media (max-width:980px) { body{ font-size:13.5px; } }
 @media (max-width:736px) { body{ font-size:13px; } }
 @media (max-width:480px) { body{ font-size:12.5px; } }
 
-/* Médias et liens de base */
-img{ max-width:100%; height:auto; display:block; } /* évite débordements */
-a{
+/* Médias & liens */
+img { max-width:100%; height:auto; display:block; }
+a {
   color:#60a5fa;
   text-decoration:none;
   text-decoration-thickness:.06em;
-  text-underline-offset:.18em; /* soulignement lisible sur sombre */
+  text-underline-offset:.18em;
 }
 a:hover{ text-decoration:underline; }
 
 /* ===== 1) TOKENS =========================================================== */
-/* Design System minimal : couleurs, rayons, ombres, dimensions et typo. */
-:root{
-  /* Couleurs principales */
-  --bg:#0f172a;        /* fond page */
-  --bg-elev:#111827;   /* éléments "élevés" */
-  --panel:#0b1220;     /* cartes/panneaux */
+:root {
+  --bg:#0f172a;        --bg-elev:#111827;   --panel:#0b1220;
   --muted:rgba(241,245,249,.7);
-  --text:rgba(241,245,249,.92);
-  --text-dim:rgba(241,245,249,.85);
-  --brand:#2563eb;     /* bleu principal */
-  --brand-2:#06b6d4;   /* cyan d’accent */
-  --accent:#22c55e;    /* succès */
-  --danger:#ef4444;    /* erreur */
+  --text:rgba(241,245,249,.92); --text-dim:rgba(241,245,249,.85);
+  --brand:#2563eb; --brand-2:#06b6d4; --accent:#22c55e; --danger:#ef4444;
   --border:rgba(148,163,184,.25);
 
-  /* Effets */
   --shadow-1:0 6px 24px rgba(0,0,0,.25), 0 2px 8px rgba(0,0,0,.15);
   --ring:0 0 0 2px #0b1220, 0 0 0 4px rgba(99,102,241,.5);
   --focus-ring:0 0 0 2px #0b1220, 0 0 0 4px rgba(34,211,238,.6);
 
-  /* Layout global */
   --container:1120px;
   --radius:18px; --radius-lg:24px; --radius-xl:28px;
-  --pad:clamp(16px,2vw,28px);   /* padding horizontal responsive */
-  --gap:clamp(16px,2.2vw,28px); /* écart grilles/cards responsive */
-  --section-y:clamp(52px,8vw,120px); /* respiration verticale des sections */
+  --pad:clamp(16px,2vw,28px);
+  --gap:clamp(16px,2.2vw,28px);
+  --section-y:clamp(52px,8vw,120px);
 
-  /* Typo : tailles contrôlées (clamps limitent l’envol sur très grands écrans) */
   --fs-xs:.82rem; --fs-sm:.94rem; --fs-base:1rem;
   --fs-lead:clamp(0.98rem, 0.9vw + 0.84rem, 1.18rem);
   --fs-h3:clamp(1.02rem, 1vw + 0.90rem, 1.28rem);
@@ -81,11 +64,8 @@ a:hover{ text-decoration:underline; }
 }
 
 /* ===== 2) TYPO ============================================================= */
-h1,h2,h3,h4{
-  color:var(--text);
-  line-height:1.25;
-  margin:0 0 .6em;
-  font-weight:800;            /* titres marqués mais compacts */
+h1,h2,h3,h4 {
+  color:var(--text); line-height:1.25; margin:0 0 .6em; font-weight:800;
 }
 h1{ font-size:var(--fs-h1); letter-spacing:.01em; }
 h2{ font-size:var(--fs-h2); letter-spacing:.01em; }
@@ -94,118 +74,103 @@ p{ margin:0 0 1.1em; }
 .lead{ font-size:var(--fs-lead); color:var(--text-dim); }
 .muted{ color:var(--muted); }
 
-/* Utilitaire pour contenu uniquement lecteurs d’écran */
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-}
+.sr-only{ position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); }
 
 /* ===== 3) LAYOUT & WRAPPERS =============================================== */
-/* Enveloppes de section + conteneur fluide (anti-overflow grâce à min-width:0) */
 .wrapper{ padding:var(--section-y) var(--pad); }
 .wrapper .inner{ max-width:var(--container); margin:0 auto; min-width:0; }
 #wrapper{ position:relative; }
 
-/* Variantes de fond (légères superpositions pour la profondeur) */
 .wrapper.style1{ background:transparent; }
-.wrapper.style2{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 40%), var(--bg);
-}
-.wrapper.style3{
-  background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(37,99,235,0) 45%);
-}
+.wrapper.style2{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 40%), var(--bg); }
+.wrapper.style3{ background:linear-gradient(180deg, rgba(37,99,235,.08), rgba(37,99,235,0) 45%); }
 .wrapper.style1-alt{ background:#0b1220; }
 
-/* ===== NAV — mobile (par défaut) : menu discret en chips ================== */
+/* ===== 4) NAVIGATION ======================================================= */
+/* --- Mobile (défaut) : nav horizontale en chips, qui défile avec la page --- */
 #sidebar {
-  position: static;               /* pas de sticky/fixed en mobile → défile avec la page */
-  left: auto; top: auto;
+  position: static;   /* pas de fixed → suit le scroll */
   width: 100%; height: auto;
-  padding: 8px var(--pad) 0;      /* compact */
-  background: transparent;        /* pas de bande sombre */
-  border: 0;                      /* pas de bordure */
-  backdrop-filter: none;
+  padding: 8px var(--pad) 0;
+  background: transparent;
+  border: 0;
   z-index: 5;
 }
 #wrapper, #footer { margin-left: 0; }
 
-#sidebar .inner { height: auto; display: block; min-width: 0; }
-#sidebar nav { max-width: 100%; }  /* clé : ne dépasse jamais l’écran */
+#sidebar .inner { height: auto; display: block; }
+#sidebar nav { max-width: 100%; }
 
-/* Liste horizontale défilable (1 seule ligne) */
 #sidebar nav ul {
   display: flex; gap: .5rem;
   margin: 0; padding: 0; list-style: none;
-  flex-wrap: nowrap;               /* force 1 ligne */
-  overflow-x: auto;                /* défilement horizontal si besoin */
+  flex-wrap: nowrap;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
-#sidebar nav ul::-webkit-scrollbar { display: none; }
+#sidebar nav ul::-webkit-scrollbar{ display:none; }
 
-#sidebar nav li { flex: 0 0 auto; }
+#sidebar nav li{ flex:0 0 auto; }
 
 #sidebar nav a {
-  display: block; white-space: nowrap;
-  font-size: .95rem; line-height: 1;
-  padding: .45rem .6rem;           /* plus petit que desktop */
-  border-radius: 999px;            /* pastilles/chips */
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.08);
-  color: var(--text);
-  opacity: .95;
+  display:block; white-space:nowrap;
+  font-size:.95rem; line-height:1;
+  padding:.45rem .6rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--text); opacity:.95;
 }
-#sidebar nav a:hover { opacity: 1; }
+#sidebar nav a:hover{ opacity:1; }
 
-/* État actif sur mobile : contraste léger (sans gros halo) */
 #sidebar nav a.active {
-  background: rgba(59,130,246,.18);
-  border-color: rgba(59,130,246,.35);
+  background:rgba(59,130,246,.18);
+  border-color:rgba(59,130,246,.35);
 }
-/* Cache la pastille de l'état actif (réservée au desktop) */
-#sidebar nav a.active::after { display: none; }
+#sidebar nav a.active::after{ display:none; }
 
-/* Ultra-petits écrans ≤400px : réductions encore plus fortes */
+/* Ultra-petits écrans ≤400px : encore plus compacts */
 @media (max-width:400px) {
-  #sidebar nav a {
-    font-size: .88rem;
-    padding: .35rem .5rem;
-  }
-  #sidebar nav ul {
-    gap: .35rem;
-  }
+  #sidebar nav a { font-size:.88rem; padding:.35rem .5rem; }
+  #sidebar nav ul { gap:.35rem; }
 }
 
-/* ===== NAV — desktop (≥1080px) : sidebar fixe à gauche ===================== */
+/* --- Desktop (≥1080px) : sidebar fixe à gauche --- */
 @media (min-width:1080px) {
   #sidebar {
-    position: fixed; left: 0; top: 0; width: 280px; height: 100vh;
-    padding: 22px 18px;
-    background: rgba(2,6,23,.4);
-    border-right: 1px solid var(--border);
-    z-index: 50;
+    position:fixed; left:0; top:0;
+    width:280px; height:100vh;
+    padding:22px 18px;
+    background:rgba(2,6,23,.4);
+    border-right:1px solid var(--border);
+    z-index:50;
   }
-  #sidebar .inner { height: 100%; display: flex; align-items: center; }
-  #sidebar nav ul { display: block; overflow: visible; }
+  #sidebar .inner{ height:100%; display:flex; align-items:center; }
+  #sidebar nav ul{ display:block; }
   #sidebar nav a {
-    padding: .55rem 0;
-    border-radius: 10px;
-    background: transparent;
-    border: 1px solid transparent;
-    position: relative; /* pour ancrer la pastille active */
+    padding:.55rem 0;
+    border-radius:10px;
+    background:transparent;
+    border:1px solid transparent;
+    position: relative;
   }
   #sidebar nav a.active::after {
-    display: block; content: "";
-    position: absolute; right: -12px; top: 50%;
-    transform: translateY(-50%);
-    width: 6px; height: 6px; border-radius: 999px;
-    background: linear-gradient(135deg,var(--brand),var(--brand-2));
-    box-shadow: 0 0 0 6px rgba(59,130,246,.18);
+    display:block; content:"";
+    position:absolute; right:-12px; top:50%;
+    transform:translateY(-50%);
+    width:6px; height:6px; border-radius:999px;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    box-shadow:0 0 0 6px rgba(59,130,246,.18);
   }
-  #wrapper, #footer { margin-left: 280px; }
+  #wrapper, #footer{ margin-left:280px; }
 }
 
-
+/* --- Overrides pour appareils tactiles : jamais fixed --- */
+@media (hover: none) and (pointer: coarse) {
+  #sidebar { position: static !important; width:100% !important; height:auto !important; }
+  #wrapper, #footer { margin-left:0 !important; }
+}
 
 /* ===== 5) HERO ============================================================= */
 /* Section d’atterrissage ; grille 2 colonnes → 1 colonne <1100px */
