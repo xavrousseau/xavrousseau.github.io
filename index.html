@@ -10,29 +10,37 @@
   <!-- ============== MÉTADONNÉES / SEO / SOCIAL ===================== -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Xavier Rousseau — Data Analyst • Data Science & Engineering</title>
+  <title>Xavier Rousseau — Senior Data Analyst / Analytics Engineer · BI & Data Engineering</title>
   <meta name="description" content="Des données fiables, des pipelines qui tournent, des indicateurs utiles. Solutions data de bout en bout — collecte, fiabilité, gouvernance, décision. CDI Brest / Remote." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0f172a" />
   <meta name="color-scheme" content="dark only" />
+  <meta name="author" content="Xavier Rousseau" />
   <link rel="canonical" href="https://xavrousseau.github.io/">
 
   <!-- Favicon / PWA basics -->
   <link rel="icon" href="images/favicon.ico" sizes="any">
-  <link rel="icon" href="images/icon-192.png" type="image/png">
+  <link rel="icon" href="images/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="images/icon-512.png" sizes="512x512" type="image/png">
+  <!-- optionnel si tu veux PWA -->
+  <!-- <link rel="manifest" href="/manifest.webmanifest"> -->
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Xavier Rousseau — Data Analyst • Data Science & Engineering">
+  <meta property="og:title" content="Xavier Rousseau — Senior Data Analyst / Analytics Engineer · BI & Data Engineering">
   <meta property="og:description" content="Des données fiables, des pipelines qui tournent, des indicateurs utiles. Solutions data de bout en bout.">
   <meta property="og:url" content="https://xavrousseau.github.io/">
   <meta property="og:image" content="https://xavrousseau.github.io/images/og-cover.jpg">
+  <meta property="og:site_name" content="Xavier Rousseau — Portfolio">
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- ============== PERF HINTS ===================== -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" as="image" href="images/portrait.png" imagesrcset="images/portrait.png 1x" imagesizes="(max-width: 768px) 80vw, 420px">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous">
+  <link rel="preload" as="image" href="images/portrait.png"
+        imagesrcset="images/portrait.png 1x"
+        imagesizes="(max-width: 768px) 80vw, 420px"
+        type="image/png">
 
   <!-- ============== STYLES ===================== -->
   <link rel="stylesheet" href="assets/css/app.css?v=5">
@@ -42,27 +50,28 @@
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin
+    crossorigin="anonymous"
     referrerpolicy="no-referrer">
+
   <!-- ============== JSON-LD minimal ===================== -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Xavier Rousseau",
-    "jobTitle":"Data Analyst / Data Science & Engineering",
+    "jobTitle":"Senior Data Analyst / Analytics Engineer · BI & Data Engineering",
     "url":"https://xavrousseau.github.io/",
     "image":"https://xavrousseau.github.io/images/portrait.png",
     "sameAs":["https://www.linkedin.com/in/xavierrousseau","https://github.com/xavrousseau"]
   }
   </script>
 </head>
- 
+
 <body>
   <!-- ============== SKIP LINK (A11Y) ===================== -->
   <a href="#intro" class="skip-link">Aller au contenu</a>
- 
-<!-- ============== SIDEBAR / NAV (desktop & mobile) ===================== -->
+
+  <!-- ============== SIDEBAR / NAV (desktop & mobile) ===================== -->
   <aside id="sidebar" aria-label="Navigation latérale">
     <div class="inner">
       <nav aria-label="Navigation principale">
@@ -86,13 +95,13 @@
     <!-- =====================================================
         1) HERO / INTRO
     ====================================================== -->
-    <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero">
+    <section id="intro" class="wrapper style1 hero fullscreen fade-up" aria-labelledby="title-hero" tabindex="-1">
       <div class="inner hero-inner">
 
         <!-- Colonne texte -->
         <div class="hero-col hero-col--text">
           <h1 id="title-hero" class="hero-title">Xavier Rousseau</h1>
-          <p class="hero-role">Data Analyst confirmé · BI & Data Engineering · Gestion de projets</p>
+          <p class="hero-role">Senior Data Analyst / Analytics Engineer · BI &amp; Data Engineering · Gestion de projets</p>
 
           <p class="hero-value">
             Des <span class="hl">données fiables</span> et des <span class="hl">indicateurs clairs</span> pour
@@ -117,7 +126,7 @@
             <li><a href="#value" class="button outline cta-lg">Mon approche</a></li>
             <li>
               <a href="assets/docs/CV_Xavier_Rousseau.pdf"
-                 target="_blank" rel="noopener"
+                 target="_blank" rel="noopener noreferrer"
                  class="button ghost cta-lg" download>
                 Télécharger le CV (PDF)
               </a>
@@ -410,7 +419,7 @@
             <h3>Data Analyst · Qwant</h3>
             <p><time datetime="2022-06">juin 2022</time> – <time datetime="2023-02">févr. 2023</time></p>
           </header>
-          <p><em>Moteur de recherche français. Seul analyste de l’entreprise, en lien direct avec produit, IT et marketing pour fiabiliser les indicateurs et donner une visibilité claire sur l’usage.</em></p>
+        <p><em>Moteur de recherche français. Seul analyste de l’entreprise, en lien direct avec produit, IT et marketing pour fiabiliser les indicateurs et donner une visibilité claire sur l’usage.</em></p>
           <ul>
             <li>Refonte des tableaux de bord stratégiques (homepage, usage produit) : définition des KPI, validation avec les métiers, adoption par la direction.</li>
             <li>Structuration des bases analytiques : exploitation des logs et clics pour créer des segments utilisateurs fiables.</li>
@@ -427,7 +436,7 @@
         <!-- Financo -->
         <article class="box">
           <header>
-            <h3>Data Analyst / Référent Data · Arkéa Financements & Services (Groupe Crédit Mutuel Arkéa)</h3>
+            <h3>Data Analyst / Référent Data · Arkéa Financements &amp; Services (Groupe Crédit Mutuel Arkéa)</h3>
             <p><time datetime="2014-03">mars 2014</time> – <time datetime="2022-05">mai 2022</time></p>
           </header>
           <p><em>Filiale de crédit à la consommation. Rôle central de référent data, interface métiers/DSI, sur des projets de modernisation BI et de gouvernance.</em></p>
@@ -481,7 +490,7 @@
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-microscope"></i></span>
               <h3>
-                <a href="https://github.com/xavrousseau/datalyzer" target="_blank" rel="noopener">
+                <a href="https://github.com/xavrousseau/datalyzer" target="_blank" rel="noopener noreferrer">
                   Datalyzer · EDA automatisée
                 </a>
               </h3>
@@ -490,7 +499,7 @@
             <p>
               Application Streamlit pour explorer rapidement des données tabulaires : contrôles qualité
               (valeurs manquantes, doublons, outliers), scoring de fiabilité et visualisations interactives.
-              <br><a href="https://datalyzer.streamlit.app/" target="_blank" rel="noopener">Voir la démo en ligne</a>
+              <br><a href="https://datalyzer.streamlit.app/" target="_blank" rel="noopener noreferrer">Voir la démo en ligne</a>
             </p>
           </article>
 
@@ -499,7 +508,7 @@
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
               <h3>
-                <a href="https://github.com/xavrousseau/mangadvisor" target="_blank" rel="noopener">
+                <a href="https://github.com/xavrousseau/mangadvisor" target="_blank" rel="noopener noreferrer">
                   Mangadvisor · Recommandation de mangas
                 </a>
               </h3>
@@ -516,7 +525,7 @@
             <div class="card-head">
               <span class="icon-badge" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
               <h3>
-                <a href="https://github.com/xavrousseau/sport-data-solution" target="_blank" rel="noopener">
+                <a href="https://github.com/xavrousseau/sport-data-solution" target="_blank" rel="noopener noreferrer">
                   Sport Data Solution · Stack data open-source
                 </a>
               </h3>
@@ -530,7 +539,7 @@
         </div>
 
         <footer class="value-cta">
-          <a href="https://github.com/xavrousseau" class="button outline" target="_blank" rel="noopener">
+          <a href="https://github.com/xavrousseau" class="button outline" target="_blank" rel="noopener noreferrer">
             Voir plus sur GitHub
           </a>
         </footer>
@@ -620,15 +629,16 @@
         <div class="split style1">
           <!-- Formulaire -->
           <section aria-label="Formulaire de contact">
-            <form id="contact-form" novalidate>
+            <form id="contact-form" novalidate onsubmit="return false;">
               <div class="fields">
                 <div class="field half">
                   <label for="name">Nom</label>
-                  <input type="text" id="name" autocomplete="name" />
+                  <input type="text" id="name" autocomplete="name" required>
                 </div>
                 <div class="field half">
                   <label for="email">Email</label>
-                  <input type="email" id="email" autocomplete="email" required />
+                  <input type="email" id="email" autocomplete="email" required
+                         pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$">
                 </div>
                 <div class="field">
                   <label for="message">Message</label>
@@ -665,6 +675,7 @@
                   const from = (mailI.value || '').trim();
                   const msg  = (msgI.value  || '').trim();
 
+                  if (!name) { alert('Merci d’indiquer votre nom.');  nameI.focus(); return; }
                   if (!from) { alert('Merci d’indiquer votre email.'); mailI.focus(); return; }
                   if (!msg)  { alert('Merci d’écrire un message.');    msgI.focus();  return; }
 
@@ -694,11 +705,11 @@
               <li>
                 <h3>Réseaux</h3>
                 <ul class="icons">
-                  <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
-                  <li><a href="https://github.com/xavrousseau" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
+                  <li><a href="https://www.linkedin.com/in/xavierrousseau" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a></li>
+                  <li><a href="https://github.com/xavrousseau" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a></li>
                 </ul>
               </li>
-              <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener">Télécharger le CV</a></li>
+              <li><h3>CV</h3><a href="assets/docs/CV_Xavier_Rousseau.pdf" target="_blank" rel="noopener noreferrer" download>Télécharger le CV</a></li>
             </ul>
           </section>
         </div>
@@ -712,13 +723,13 @@
     <div class="inner">
       <ul class="menu">
         <li>© Xavier Rousseau. Tous droits réservés.</li>
-        <li>Thème : <a href="https://html5up.net" rel="noopener">HTML5 UP</a></li>
+        <li>Thème : <a href="https://html5up.net" target="_blank" rel="noopener noreferrer">HTML5 UP</a></li>
       </ul>
     </div>
   </footer>
 
   <!-- ============== SCRIPTS ===================== -->
-  <!-- Défilement doux côté CSS (fallback JS inutile si tu préfères) -->
+  <!-- Défilement doux côté CSS -->
   <script defer>
     document.documentElement.style.scrollBehavior = 'smooth';
   </script>
